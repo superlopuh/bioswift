@@ -1,5 +1,3 @@
-// Playground - noun: a place where people can play
-
 import Foundation
 
 // Helper function, chooses max out of a variable number of parameters

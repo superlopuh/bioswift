@@ -1,3 +1,17 @@
+// Playground - noun: a place where people can play
+
+import Cocoa
+//: **Hello
+//: Time complexity: O(nm)
+//: Space complexity: O(nm)
+//:
+//: ----
+//:
+//: This algorithm is used to assess the similarity of two strings. It tries to align the entirety of the two strings, as opposed to aligning just the best-fitting substrings.
+//:
+//: It works by filling the edit graph from the top left to the bottom right, and tracing the path back. Each cell stores the score of the alignment of the two substrings so far, as well as a pointer to the cell of a best alignment of the prefix.
+
+
 import Foundation
 
 // Helper function, chooses max out of a variable number of parameters
@@ -92,7 +106,7 @@ func globalAlignment(top: String, left: String) -> String {
     var returnedLeft:String = ""
     
     var currentCoords = (row: leftArray.count, col: topArray.count)
-
+    
     
     while scoreAndPointerMatrix[currentCoords.row, currentCoords.col].1 != nil {
         returnedTop + "\n" + returnedLeft
@@ -123,6 +137,5 @@ func globalAlignment(top: String, left: String) -> String {
 
 
 globalAlignment(stringA, stringB)
-
 
 

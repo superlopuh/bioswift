@@ -10,6 +10,7 @@
 		A6DCFE771AC0458F007E86D1 /* bioswift-core.h in Headers */ = {isa = PBXBuildFile; fileRef = A6DCFE761AC0458F007E86D1 /* bioswift-core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6DCFE7D1AC0458F007E86D1 /* bioswift-core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DCFE711AC0458F007E86D1 /* bioswift-core.framework */; };
 		A6DCFE841AC0458F007E86D1 /* bioswift_coreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFE831AC0458F007E86D1 /* bioswift_coreTests.swift */; };
+		A6DCFEE51AC07C24007E86D1 /* Nucleotide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFEE41AC07C24007E86D1 /* Nucleotide.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		A6DCFE7C1AC0458F007E86D1 /* bioswift-coreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "bioswift-coreTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6DCFE821AC0458F007E86D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6DCFE831AC0458F007E86D1 /* bioswift_coreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bioswift_coreTests.swift; sourceTree = "<group>"; };
+		A6DCFEE41AC07C24007E86D1 /* Nucleotide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nucleotide.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				A6DCFE761AC0458F007E86D1 /* bioswift-core.h */,
+				A6DCFEE41AC07C24007E86D1 /* Nucleotide.swift */,
 				A6DCFE741AC0458F007E86D1 /* Supporting Files */,
 			);
 			path = "bioswift-core";
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6DCFEE51AC07C24007E86D1 /* Nucleotide.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +322,7 @@
 		A6DCFE881AC0458F007E86D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -329,12 +334,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		A6DCFE891AC0458F007E86D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -400,6 +407,7 @@
 				A6DCFE891AC0458F007E86D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6DCFE8A1AC0458F007E86D1 /* Build configuration list for PBXNativeTarget "bioswift-coreTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +416,7 @@
 				A6DCFE8C1AC0458F007E86D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

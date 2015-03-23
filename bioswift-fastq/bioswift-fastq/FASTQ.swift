@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import bioswift-core
+import BioSwiftCore
 
 public struct FASTQ {
     // Original Info

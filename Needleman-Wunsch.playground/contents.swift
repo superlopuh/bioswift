@@ -13,6 +13,8 @@ import Foundation
 
 // Helper function, chooses max out of a variable number of parameters
 func whichMax<C where C: Comparable> (toCompare: C...) -> Int {
+    assert(toCompare.count != 0, "Compare more than one element for whichMax")
+    
     var maxIndex    = 0
     var previousMax = toCompare[0]
     

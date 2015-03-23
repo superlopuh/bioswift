@@ -11,6 +11,7 @@
 		A6DCFF3C1AC0B109007E86D1 /* BioSwiftCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DCFF301AC0B109007E86D1 /* BioSwiftCore.framework */; };
 		A6DCFF431AC0B109007E86D1 /* BioSwiftCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF421AC0B109007E86D1 /* BioSwiftCoreTests.swift */; };
 		A6DCFF4D1AC0B14D007E86D1 /* Nucleotide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF4C1AC0B14D007E86D1 /* Nucleotide.swift */; };
+		A6DCFF821AC0B48C007E86D1 /* DNASequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF811AC0B48C007E86D1 /* DNASequence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		A6DCFF411AC0B109007E86D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6DCFF421AC0B109007E86D1 /* BioSwiftCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioSwiftCoreTests.swift; sourceTree = "<group>"; };
 		A6DCFF4C1AC0B14D007E86D1 /* Nucleotide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nucleotide.swift; sourceTree = "<group>"; };
+		A6DCFF811AC0B48C007E86D1 /* DNASequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNASequence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			children = (
 				A6DCFF351AC0B109007E86D1 /* BioSwiftCore.h */,
 				A6DCFF4C1AC0B14D007E86D1 /* Nucleotide.swift */,
+				A6DCFF811AC0B48C007E86D1 /* DNASequence.swift */,
 				A6DCFF331AC0B109007E86D1 /* Supporting Files */,
 			);
 			path = BioSwiftCore;
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6DCFF821AC0B48C007E86D1 /* DNASequence.swift in Sources */,
 				A6DCFF4D1AC0B14D007E86D1 /* Nucleotide.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +411,7 @@
 				A6DCFF481AC0B109007E86D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6DCFF491AC0B109007E86D1 /* Build configuration list for PBXNativeTarget "BioSwiftCoreTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +420,7 @@
 				A6DCFF4B1AC0B109007E86D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,3 +8,72 @@
 
 import Foundation
 
+public struct DNASequence: Equatable, Printable {
+    public var nucleotideArray: [Nucleotide]
+    public var length: Int {
+        return nucleotideArray.count
+    }
+    
+    public init?(dnaString: String) {
+        var nucleotideArray: [Nucleotide] = []
+        
+        for character in dnaString {
+            if let nucleotide = Nucleotide(char: character) {
+                nucleotideArray.append(nucleotide)
+            } else {
+                return nil
+            }
+        }
+        
+        self.nucleotideArray = nucleotideArray
+    }
+    
+    public init(nucleotideSlice: Slice<Nucleotide>) {
+        var nucleotideArray: [Nucleotide] = []
+        var initialString = ""
+        
+        for nucleotide in nucleotideSlice {
+            nucleotideArray.append(nucleotide)
+            initialString.append(nucleotide.rawValue)
+        }
+        
+        self.nucleotideArray = nucleotideArray
+    }
+    
+    public func subsequence(subRange: Range<Int>) -> DNASequence {
+        assert(subRange.startIndex >= 0 && subRange.endIndex <= length, "Subrange invalid")
+        
+        return DNASequence(nucleotideSlice: nucleotideArray[subRange])
+    }
+    
+    public subscript (index: Int) -> Nucleotide {
+        return nucleotideArray[index]
+    }
+    
+    public subscript (subRange: Range<Int>) -> DNASequence {
+        return subsequence(subRange)
+    }
+    
+    public var description: String {
+        var descString = ""
+        
+        for nucleotide in nucleotideArray {
+            descString.append(nucleotide.rawValue)
+        }
+        
+        return descString
+    }
+}
+
+public func ==(lhs: DNASequence, rhs: DNASequence) -> Bool {
+    if lhs.length == rhs.length {
+        for index in 0..<lhs.length {
+            if lhs.nucleotideArray[index] != rhs.nucleotideArray[index] {
+                return false
+            }
+        }
+        return true
+    } else {
+        return false
+    }
+}

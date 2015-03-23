@@ -11,6 +11,7 @@
 		A6DCFEFE1AC0ABA4007E86D1 /* bioswift-fastq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DCFEF21AC0ABA4007E86D1 /* bioswift-fastq.framework */; };
 		A6DCFF051AC0ABA4007E86D1 /* bioswift_fastqTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF041AC0ABA4007E86D1 /* bioswift_fastqTests.swift */; };
 		A6DCFF0F1AC0ABF7007E86D1 /* FASTQType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF0E1AC0ABF7007E86D1 /* FASTQType.swift */; };
+		A6DCFF1C1AC0AF0B007E86D1 /* FASTQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF1B1AC0AF0B007E86D1 /* FASTQ.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		A6DCFF031AC0ABA4007E86D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6DCFF041AC0ABA4007E86D1 /* bioswift_fastqTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bioswift_fastqTests.swift; sourceTree = "<group>"; };
 		A6DCFF0E1AC0ABF7007E86D1 /* FASTQType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FASTQType.swift; sourceTree = "<group>"; };
+		A6DCFF1B1AC0AF0B007E86D1 /* FASTQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FASTQ.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			children = (
 				A6DCFEF71AC0ABA4007E86D1 /* bioswift-fastq.h */,
 				A6DCFF0E1AC0ABF7007E86D1 /* FASTQType.swift */,
+				A6DCFF1B1AC0AF0B007E86D1 /* FASTQ.swift */,
 				A6DCFEF51AC0ABA4007E86D1 /* Supporting Files */,
 			);
 			path = "bioswift-fastq";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6DCFF0F1AC0ABF7007E86D1 /* FASTQType.swift in Sources */,
+				A6DCFF1C1AC0AF0B007E86D1 /* FASTQ.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +411,7 @@
 				A6DCFF0A1AC0ABA5007E86D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6DCFF0B1AC0ABA5007E86D1 /* Build configuration list for PBXNativeTarget "bioswift-fastqTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +420,7 @@
 				A6DCFF0D1AC0ABA5007E86D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

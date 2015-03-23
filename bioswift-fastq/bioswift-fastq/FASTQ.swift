@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import bioswift-core
 
 public struct FASTQ {
     // Original Info
@@ -18,3 +19,4 @@ public struct FASTQ {
 //    let probDNASequence: ProbDNASequence
 }
 
+let hello = Nucleotide(Character("A"))

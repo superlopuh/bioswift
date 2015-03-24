@@ -10,6 +10,7 @@
 		A6DCFF931AC16A5E007E86D1 /* BioSwiftGenerate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6DCFF921AC16A5E007E86D1 /* BioSwiftGenerate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6DCFF991AC16A5E007E86D1 /* BioSwiftGenerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DCFF8D1AC16A5E007E86D1 /* BioSwiftGenerate.framework */; };
 		A6DCFFA01AC16A5E007E86D1 /* BioSwiftGenerateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF9F1AC16A5E007E86D1 /* BioSwiftGenerateTests.swift */; };
+		A6DCFFAA1AC16AB7007E86D1 /* ReadGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFFA91AC16AB7007E86D1 /* ReadGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		A6DCFF981AC16A5E007E86D1 /* BioSwiftGenerateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BioSwiftGenerateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6DCFF9E1AC16A5E007E86D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6DCFF9F1AC16A5E007E86D1 /* BioSwiftGenerateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioSwiftGenerateTests.swift; sourceTree = "<group>"; };
+		A6DCFFA91AC16AB7007E86D1 /* ReadGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				A6DCFF921AC16A5E007E86D1 /* BioSwiftGenerate.h */,
+				A6DCFFA91AC16AB7007E86D1 /* ReadGenerator.swift */,
 				A6DCFF901AC16A5E007E86D1 /* Supporting Files */,
 			);
 			path = BioSwiftGenerate;
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6DCFFAA1AC16AB7007E86D1 /* ReadGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +322,7 @@
 		A6DCFFA41AC16A5E007E86D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -329,12 +334,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		A6DCFFA51AC16A5E007E86D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

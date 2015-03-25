@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6799CE81AC20331002799DA /* ProbNucleotide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6799CE71AC20331002799DA /* ProbNucleotide.swift */; };
 		A6DCFF361AC0B109007E86D1 /* BioSwiftCore.h in Headers */ = {isa = PBXBuildFile; fileRef = A6DCFF351AC0B109007E86D1 /* BioSwiftCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6DCFF3C1AC0B109007E86D1 /* BioSwiftCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DCFF301AC0B109007E86D1 /* BioSwiftCore.framework */; };
 		A6DCFF431AC0B109007E86D1 /* BioSwiftCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF421AC0B109007E86D1 /* BioSwiftCoreTests.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A6799CE71AC20331002799DA /* ProbNucleotide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProbNucleotide.swift; sourceTree = "<group>"; };
 		A6DCFF301AC0B109007E86D1 /* BioSwiftCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BioSwiftCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6DCFF341AC0B109007E86D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6DCFF351AC0B109007E86D1 /* BioSwiftCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BioSwiftCore.h; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				A6DCFF351AC0B109007E86D1 /* BioSwiftCore.h */,
 				A6DCFF4C1AC0B14D007E86D1 /* Nucleotide.swift */,
+				A6799CE71AC20331002799DA /* ProbNucleotide.swift */,
 				A6DCFF811AC0B48C007E86D1 /* DNASequence.swift */,
 				A6DCFF331AC0B109007E86D1 /* Supporting Files */,
 			);
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6DCFF821AC0B48C007E86D1 /* DNASequence.swift in Sources */,
+				A6799CE81AC20331002799DA /* ProbNucleotide.swift in Sources */,
 				A6DCFF4D1AC0B14D007E86D1 /* Nucleotide.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

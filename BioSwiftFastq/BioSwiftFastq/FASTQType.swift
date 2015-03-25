@@ -8,6 +8,9 @@
 
 import Foundation
 
+// All info from here:
+// http://en.wikipedia.org/wiki/FASTQ_format
+
 public enum FASTQType {
     case Illumina18, Illumina15, Sanger
 }

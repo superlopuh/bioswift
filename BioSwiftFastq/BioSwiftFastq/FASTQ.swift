@@ -42,4 +42,13 @@ public struct FASTQ {
             return nil
         }
     }
+    
+    public var stringToWrite: String {
+        var stringToWrite = "\(fastqInfoString)\r\n"
+        stringToWrite    += "\(dnaString)\r\n"
+        stringToWrite    += "+\r\n"
+        stringToWrite    += "\(qualityString)\r\n"
+        
+        return stringToWrite
+    }
 }

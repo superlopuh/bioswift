@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ProbNucleotide {
+public struct ProbNucleotide {
     let nucleotide: Nucleotide
     let errorProb: Double
 }

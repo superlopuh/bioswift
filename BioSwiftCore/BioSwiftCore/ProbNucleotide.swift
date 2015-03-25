@@ -11,4 +11,17 @@ import Foundation
 public enum ProbNucleotide {
     case Unknown
     case Known(Nucleotide, Double)
+    
+    public func probabilityMatch(otherNucleotide: Nucleotide) -> Double {
+        switch self{
+        case .Unknown:
+            return 0.25
+        case let .Known(nucleotide, errorProb):
+            if nucleotide == otherNucleotide {
+                return 1.0 - errorProb
+            } else {
+                return errorProb / 3.0
+            }
+        }
+    }
 }

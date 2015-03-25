@@ -46,10 +46,10 @@ public struct FASTQ {
     }
     
     public var stringToWrite: String {
-        var stringToWrite = "\(fastqInfoString)\r\n"
-        stringToWrite    += "\(dnaString)\r\n"
-        stringToWrite    += "+\r\n"
-        stringToWrite    += "\(qualityString)\r\n"
+        var stringToWrite = "\(fastqInfoString)\n"
+        stringToWrite    += "\(dnaString)\n"
+        stringToWrite    += "+\n"
+        stringToWrite    += "\(qualityString)\n"
         
         return stringToWrite
     }

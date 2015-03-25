@@ -36,9 +36,11 @@ public struct FASTQ {
             if let probDNASequence = ProbDNASequence(dnaString: dnaString, errorProbArray: errorProbArray) {
                 self.probDNASequence = probDNASequence
             } else {
+                println("Could not initialise ProbDNASequence")
                 return nil
             }
         } else {
+            println("QualityString did not unwrap successfully")
             return nil
         }
     }

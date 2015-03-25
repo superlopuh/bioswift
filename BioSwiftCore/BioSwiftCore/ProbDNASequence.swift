@@ -38,6 +38,8 @@ public struct ProbDNASequence: Printable {
             }
         }
         
+        assert(nucleotideArray.count == dnaStringLength, "DNAString length is not equal to ProbNucleotide array")
+        
         self.nucleotideArray = nucleotideArray
     }
     

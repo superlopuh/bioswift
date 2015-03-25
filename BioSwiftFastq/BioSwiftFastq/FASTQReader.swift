@@ -42,8 +42,14 @@ public class FASTQReader {
         var sequences = [FASTQ]()
         
         if let fileContent = NSString(contentsOfURL: fileAddress, encoding: NSUTF8StringEncoding, error: nil) {
-            println(fileContent.length)
+            println("FASTQ file length \(fileContent.length)")
             let fastqStringArray = fileContent.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) as! [String]
+            
+            let numberOfLines = fastqStringArray.count
+            var linesRead = 0
+            var printed = false
+            
+            let dateStart = NSDate()
             
             var gen = fastqStringArray.generate()
             while
@@ -51,6 +57,12 @@ public class FASTQReader {
                 let dnaString     = gen.next(),
                 let plusString    = gen.next(),
                 let qualityString = gen.next(){
+                    linesRead += 4
+                    if linesRead > 100000 && !printed {
+                        println("100000 lines parsed")
+                        println(NSDate().timeIntervalSinceDate(dateStart))
+                        printed = true
+                    }
                     if let fastq = FASTQ(fastqInfoString: infoString, dnaString: dnaString, qualityString: qualityString, fastqType: fastqType) {
                         if filter(fastq) {
                             sequences.append(fastq)

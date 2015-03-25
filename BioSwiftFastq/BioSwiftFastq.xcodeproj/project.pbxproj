@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6799CEC1AC2CF93002799DA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6799CEB1AC2CF93002799DA /* Extensions.swift */; };
 		A6DCFF671AC0B20F007E86D1 /* BioSwiftFastq.h in Headers */ = {isa = PBXBuildFile; fileRef = A6DCFF661AC0B20F007E86D1 /* BioSwiftFastq.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6DCFF6D1AC0B210007E86D1 /* BioSwiftFastq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DCFF611AC0B20F007E86D1 /* BioSwiftFastq.framework */; };
 		A6DCFF741AC0B210007E86D1 /* BioSwiftFastqTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF731AC0B210007E86D1 /* BioSwiftFastqTests.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A6799CEB1AC2CF93002799DA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A6DCFF611AC0B20F007E86D1 /* BioSwiftFastq.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BioSwiftFastq.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6DCFF651AC0B20F007E86D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6DCFF661AC0B20F007E86D1 /* BioSwiftFastq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BioSwiftFastq.h; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				A6DCFF661AC0B20F007E86D1 /* BioSwiftFastq.h */,
 				A6DCFF7D1AC0B240007E86D1 /* FASTQType.swift */,
 				A6DCFF7F1AC0B2A9007E86D1 /* FASTQ.swift */,
+				A6799CEB1AC2CF93002799DA /* Extensions.swift */,
 				A6DCFF641AC0B20F007E86D1 /* Supporting Files */,
 			);
 			path = BioSwiftFastq;
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6DCFF7E1AC0B240007E86D1 /* FASTQType.swift in Sources */,
+				A6799CEC1AC2CF93002799DA /* Extensions.swift in Sources */,
 				A6DCFF801AC0B2A9007E86D1 /* FASTQ.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

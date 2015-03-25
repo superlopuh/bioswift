@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum FASTQType {
+public enum FASTQType {
     case Illumina18, Illumina15, Sanger
 }

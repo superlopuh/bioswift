@@ -10,15 +10,15 @@ import Foundation
 import BioSwiftCore
 
 public struct FASTQ {
-    let fastqType: FASTQType
+    public let fastqType: FASTQType
     
     // Original Info
-    let fastqInfoString: String
-    let dnaString: String
-    let qualityString: String
+    public let fastqInfoString: String
+    public let dnaString: String
+    public let qualityString: String
     
     // Derived structure
-    let probDNASequence: ProbDNASequence
+    public let probDNASequence: ProbDNASequence
     
     public init?(fastqInfoString: String, dnaString: String, qualityString: String, fastqType: FASTQType) {
         self.fastqType          = fastqType

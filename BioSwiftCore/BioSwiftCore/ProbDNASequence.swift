@@ -19,7 +19,7 @@ public struct ProbDNASequence: Printable {
         let dnaStringLength = count(dnaString)
         
         if dnaStringLength != errorProbArray.count {
-            // Lengths don't match up
+            println("Lengths don't match up for ProbDNASequence")
             return nil
         }
         
@@ -27,9 +27,13 @@ public struct ProbDNASequence: Printable {
         
         for (index, character) in enumerate(dnaString) {
             if let nucleotide = Nucleotide(char: character) {
-                let probNucleotide = ProbNucleotide(nucleotide: nucleotide, errorProb: errorProbArray[index])
+                let probNucleotide = ProbNucleotide.Known(nucleotide, errorProbArray[index])
                 nucleotideArray.append(probNucleotide)
+            } else if Character("N") == character {
+                // Unknown error probability
+                nucleotideArray.append(.Unknown)
             } else {
+                println("Could not initialise ProbNucleotide from \(character)")
                 return nil
             }
         }
@@ -65,7 +69,12 @@ public struct ProbDNASequence: Printable {
         var descString = "ProbDNASequence: "
         
         for probNucleotide in nucleotideArray {
-            descString.append(probNucleotide.nucleotide.rawValue)
+            switch probNucleotide {
+            case .Known(let nucleotide, _):
+                descString.append(nucleotide.rawValue)
+            case .Unknown:
+                descString += "N"
+            }
         }
         
         // Don't have probabilities in description

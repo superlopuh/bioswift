@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ProbNucleotide {
-    let nucleotide: Nucleotide
-    let errorProb: Double
+public enum ProbNucleotide {
+    case Unknown
+    case Known(Nucleotide, Double)
 }

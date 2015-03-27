@@ -35,6 +35,6 @@ public class DNASequenceGenerator {
         
         assert(nucleotideArray.count == length, "NucleotideArray length doesn't match up")
         
-        return DNASequence(nucleotideSlice: nucleotideArray)
+        return DNASequence(nucleotideArray)
     }
 }

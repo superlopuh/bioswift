@@ -62,7 +62,7 @@ public struct ProbDNASequence: Printable {
         self.nucleotideArray = probNucleotideArray
     }
     
-    public init(nucleotideSlice: Slice<ProbNucleotide>) {
+    public init<S: SequenceType where S.Generator.Element == ProbNucleotide>(nucleotideSlice: S) {
         var nucleotideArray: [ProbNucleotide] = []
         
         for probNucleotide in nucleotideSlice {

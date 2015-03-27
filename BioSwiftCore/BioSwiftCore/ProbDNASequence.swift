@@ -43,6 +43,25 @@ public struct ProbDNASequence: Printable {
         self.nucleotideArray = nucleotideArray
     }
     
+    public init?(dnaSequence: DNASequence, errorProbArray: [Double]) {
+        if dnaSequence.length != errorProbArray.count {
+            println("Lengths don't match up for ProbDNASequence")
+            return nil
+        }
+        // Maybe check for errorProbs being in the correct range
+        
+        var probNucleotideArray: [ProbNucleotide] = []
+        
+        for (index, nucleotide) in enumerate(dnaSequence.nucleotideArray) {
+            let probNucleotide = ProbNucleotide.Known(nucleotide, errorProbArray[index])
+            probNucleotideArray.append(probNucleotide)
+        }
+        
+        assert(probNucleotideArray.count == dnaSequence.length, "DNAString length is not equal to ProbNucleotide array")
+        
+        self.nucleotideArray = probNucleotideArray
+    }
+    
     public init(nucleotideSlice: Slice<ProbNucleotide>) {
         var nucleotideArray: [ProbNucleotide] = []
         

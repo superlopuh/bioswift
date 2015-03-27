@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Nucleotide: Character {
+public enum Nucleotide: Character, NucleotideType {
     case A = "A"
     case C = "C"
     case G = "G"

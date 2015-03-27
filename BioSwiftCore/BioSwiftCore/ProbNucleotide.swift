@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum ProbNucleotide {
+public enum ProbNucleotide: NucleotideType {
     case Unknown
     case Known(Nucleotide, Double)
     

@@ -28,7 +28,7 @@ public struct DNASequence: Equatable, Printable {
         self.nucleotideArray = nucleotideArray
     }
     
-    public init(nucleotideSlice: Slice<Nucleotide>) {
+    public init<S: SequenceType where S.Generator.Element == Nucleotide>(nucleotideSlice: S) {
         var nucleotideArray: [Nucleotide] = []
         var initialString = ""
         

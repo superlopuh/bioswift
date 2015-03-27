@@ -62,10 +62,10 @@ public struct ProbDNASequence: Printable {
         self.nucleotideArray = probNucleotideArray
     }
     
-    public init<S: SequenceType where S.Generator.Element == ProbNucleotide>(nucleotideSlice: S) {
+    public init<S: SequenceType where S.Generator.Element == ProbNucleotide>(_ nucleotideSequence: S) {
         var nucleotideArray: [ProbNucleotide] = []
         
-        for probNucleotide in nucleotideSlice {
+        for probNucleotide in nucleotideSequence {
             nucleotideArray.append(probNucleotide)
         }
         
@@ -75,7 +75,7 @@ public struct ProbDNASequence: Printable {
     public func subsequence(subRange: Range<Int>) -> ProbDNASequence {
         assert(subRange.startIndex >= 0 && subRange.endIndex <= length, "Subrange invalid")
         
-        return ProbDNASequence(nucleotideSlice: nucleotideArray[subRange])
+        return ProbDNASequence(nucleotideArray[subRange])
     }
     
     public subscript (index: Int) -> ProbNucleotide {

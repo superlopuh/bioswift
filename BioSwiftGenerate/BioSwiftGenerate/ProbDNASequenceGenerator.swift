@@ -10,4 +10,7 @@ import Foundation
 
 public class ProbDNASequenceGenerator {
     
+    public static func generateErrorProb() -> Double {
+        return 0.5
+    }
 }

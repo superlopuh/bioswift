@@ -25,6 +25,14 @@ public enum FASTQType {
         }
     }
     
+    public func scoreToProb(qualityScore: Int) -> Double {
+        return pow(10.0, -Double(qualityScore)/10.0)
+    }
+    
+    public func probToScore(errorProbability: Double) -> Int {
+        return Int(-10.0 * log10(errorProbability))
+    }
+    
     public func charToProb(character: Character) -> Double? {
         // Mess about with Swift strings to get ascii
         let unicodeScalarView = String(character).unicodeScalars

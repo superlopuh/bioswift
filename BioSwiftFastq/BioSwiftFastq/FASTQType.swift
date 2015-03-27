@@ -47,9 +47,9 @@ public enum FASTQType {
         
         let adjustedQ = Int(scalarValue)
         
-        let qualityScore = Double(adjustedQ - getPhred())
+        let qualityScore = adjustedQ - getPhred()
         
-        let errorProbability = pow(10.0, -qualityScore/10.0)
+        let errorProbability = scoreToProb(qualityScore)
         
         switch self{
         case .Sanger:
@@ -63,9 +63,7 @@ public enum FASTQType {
     }
     
     public func probToChar(errorProbability: Double) -> Character? {
-        let qualityScore = -10 * log10(errorProbability)
-        
-        let adjustedQ = Int(qualityScore) + getPhred()
+        let adjustedQ = probToScore(errorProbability) + getPhred()
         
         return Character(UnicodeScalar(adjustedQ))
     }

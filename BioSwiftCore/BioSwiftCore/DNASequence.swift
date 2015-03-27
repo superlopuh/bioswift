@@ -8,7 +8,9 @@
 
 import Foundation
 
-public struct DNASequence: Equatable, Printable {
+public struct DNASequence: Equatable, Printable, DNASequenceType {
+    public typealias N = Nucleotide
+    
     public var nucleotideArray: [Nucleotide]
     public var length: Int {
         return nucleotideArray.count

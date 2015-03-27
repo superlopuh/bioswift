@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A6649FFC1AC5DA5D00F30F04 /* NucleotideType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6649FFB1AC5DA5D00F30F04 /* NucleotideType.swift */; };
+		A664A0001AC5DCA900F30F04 /* DNASequenceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6649FFF1AC5DCA900F30F04 /* DNASequenceType.swift */; };
 		A6799CE81AC20331002799DA /* ProbNucleotide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6799CE71AC20331002799DA /* ProbNucleotide.swift */; };
 		A6799CEA1AC2C945002799DA /* ProbDNASequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6799CE91AC2C944002799DA /* ProbDNASequence.swift */; };
 		A6DCFF361AC0B109007E86D1 /* BioSwiftCore.h in Headers */ = {isa = PBXBuildFile; fileRef = A6DCFF351AC0B109007E86D1 /* BioSwiftCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		A6649FFB1AC5DA5D00F30F04 /* NucleotideType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NucleotideType.swift; sourceTree = "<group>"; };
+		A6649FFF1AC5DCA900F30F04 /* DNASequenceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNASequenceType.swift; sourceTree = "<group>"; };
 		A6799CE71AC20331002799DA /* ProbNucleotide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProbNucleotide.swift; sourceTree = "<group>"; };
 		A6799CE91AC2C944002799DA /* ProbDNASequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProbDNASequence.swift; sourceTree = "<group>"; };
 		A6DCFF301AC0B109007E86D1 /* BioSwiftCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BioSwiftCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,7 @@
 				A6649FFB1AC5DA5D00F30F04 /* NucleotideType.swift */,
 				A6DCFF4C1AC0B14D007E86D1 /* Nucleotide.swift */,
 				A6799CE71AC20331002799DA /* ProbNucleotide.swift */,
+				A6649FFF1AC5DCA900F30F04 /* DNASequenceType.swift */,
 				A6DCFF811AC0B48C007E86D1 /* DNASequence.swift */,
 				A6799CE91AC2C944002799DA /* ProbDNASequence.swift */,
 				A6DCFF331AC0B109007E86D1 /* Supporting Files */,
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A664A0001AC5DCA900F30F04 /* DNASequenceType.swift in Sources */,
 				A6DCFF821AC0B48C007E86D1 /* DNASequence.swift in Sources */,
 				A6649FFC1AC5DA5D00F30F04 /* NucleotideType.swift in Sources */,
 				A6799CE81AC20331002799DA /* ProbNucleotide.swift in Sources */,

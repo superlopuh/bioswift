@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A62F33961AC58CFD00C50601 /* DNASequenceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62F33951AC58CFD00C50601 /* DNASequenceGenerator.swift */; };
 		A6DCFF931AC16A5E007E86D1 /* BioSwiftGenerate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6DCFF921AC16A5E007E86D1 /* BioSwiftGenerate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6DCFF991AC16A5E007E86D1 /* BioSwiftGenerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6DCFF8D1AC16A5E007E86D1 /* BioSwiftGenerate.framework */; };
 		A6DCFFA01AC16A5E007E86D1 /* BioSwiftGenerateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCFF9F1AC16A5E007E86D1 /* BioSwiftGenerateTests.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A62F33951AC58CFD00C50601 /* DNASequenceGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNASequenceGenerator.swift; sourceTree = "<group>"; };
 		A6DCFF8D1AC16A5E007E86D1 /* BioSwiftGenerate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BioSwiftGenerate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6DCFF911AC16A5E007E86D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6DCFF921AC16A5E007E86D1 /* BioSwiftGenerate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BioSwiftGenerate.h; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			children = (
 				A6DCFF921AC16A5E007E86D1 /* BioSwiftGenerate.h */,
 				A6DCFFA91AC16AB7007E86D1 /* ReadGenerator.swift */,
+				A62F33951AC58CFD00C50601 /* DNASequenceGenerator.swift */,
 				A6DCFF901AC16A5E007E86D1 /* Supporting Files */,
 			);
 			path = BioSwiftGenerate;
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A62F33961AC58CFD00C50601 /* DNASequenceGenerator.swift in Sources */,
 				A6DCFFAA1AC16AB7007E86D1 /* ReadGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +411,7 @@
 				A6DCFFA51AC16A5E007E86D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6DCFFA61AC16A5E007E86D1 /* Build configuration list for PBXNativeTarget "BioSwiftGenerateTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +420,7 @@
 				A6DCFFA81AC16A5E007E86D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

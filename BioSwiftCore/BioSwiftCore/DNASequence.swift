@@ -28,11 +28,11 @@ public struct DNASequence: Equatable, Printable {
         self.nucleotideArray = nucleotideArray
     }
     
-    public init<S: SequenceType where S.Generator.Element == Nucleotide>(nucleotideSlice: S) {
+    public init<S: SequenceType where S.Generator.Element == Nucleotide>(_ nucleotideSequence: S) {
         var nucleotideArray: [Nucleotide] = []
         var initialString = ""
         
-        for nucleotide in nucleotideSlice {
+        for nucleotide in nucleotideSequence {
             nucleotideArray.append(nucleotide)
             initialString.append(nucleotide.rawValue)
         }
@@ -43,7 +43,7 @@ public struct DNASequence: Equatable, Printable {
     public func subsequence(subRange: Range<Int>) -> DNASequence {
         assert(subRange.startIndex >= 0 && subRange.endIndex <= length, "Subrange invalid")
         
-        return DNASequence(nucleotideSlice: nucleotideArray[subRange])
+        return DNASequence(nucleotideArray[subRange])
     }
     
     public subscript (index: Int) -> Nucleotide {

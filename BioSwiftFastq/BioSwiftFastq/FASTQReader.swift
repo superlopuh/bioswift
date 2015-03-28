@@ -51,6 +51,8 @@ public class FASTQReader {
             
             let dateStart = NSDate()
             
+            println("Date start: \(dateStart)")
+            
             var gen = fastqStringArray.generate()
             while
                 let infoString    = gen.next(),
@@ -73,6 +75,8 @@ public class FASTQReader {
             }
         }
         // End of file
+        
+        println("Date end: \(NSDate())")
         
         return sequences
     }

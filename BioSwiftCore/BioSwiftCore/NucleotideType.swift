@@ -8,5 +8,5 @@
 
 import Foundation
 
-public protocol NucleotideType {
+public protocol NucleotideType: Printable {
 }

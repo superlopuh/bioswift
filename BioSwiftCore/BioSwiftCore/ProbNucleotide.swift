@@ -11,4 +11,13 @@ import Foundation
 public enum ProbNucleotide: NucleotideType {
     case Unknown
     case Known(Nucleotide, Double)
+    
+    public var description: String {
+        switch self {
+        case .Unknown:
+            return "N"
+        case .Known(let nucleotide, _):
+            return nucleotide.description
+        }
+    }
 }

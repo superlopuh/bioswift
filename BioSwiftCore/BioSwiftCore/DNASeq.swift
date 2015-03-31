@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct DNASeq<N: NucleotideType> {
+public struct DNASeq<N: NucleotideType>: Printable {
     public var nucleotideArray: [N]
     public var length: Int {
         return nucleotideArray.count
@@ -36,5 +36,15 @@ public struct DNASeq<N: NucleotideType> {
     
     public subscript (subRange: Range<Int>) -> DNASeq<N> {
         return subsequence(subRange)
+    }
+    
+    public var description: String {
+        var description = ""
+        
+        for nucleotide in nucleotideArray {
+            description += nucleotide.description
+        }
+        
+        return description
     }
 }

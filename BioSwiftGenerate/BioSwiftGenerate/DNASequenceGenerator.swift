@@ -28,6 +28,7 @@ public class DNASequenceGenerator {
                 nucleotide = .T
             default:
                 assertionFailure("Random number generator generated number out of 0..<4 range")
+                nucleotide = .A
             }
             
             nucleotideArray.append(nucleotide)

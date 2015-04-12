@@ -29,6 +29,7 @@ public class ProbDNASequenceGenerator {
                 nucleotide = .T
             default:
                 assertionFailure("Random number generator generated number out of 0..<4 range")
+                nucleotide = .A
             }
             
             let errorProb = generateErrorProb()
@@ -60,6 +61,7 @@ public class ProbDNASequenceGenerator {
                 nucleotide = .T
             default:
                 assertionFailure("Random number generator generated number out of 0..<4 range")
+                nucleotide = .A
             }
             
             let errorProb = generateErrorProb()

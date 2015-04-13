@@ -35,7 +35,29 @@ func exampleGenerateProbNucleotide(@noescape generateErrorProb: () -> Double) ->
     
     let errorProb = generateErrorProb()
     
-    return .Known(nucleotide, errorProb)
+    // Substitute another nucleotide as an error with uniform probability
+    if randomDouble() < errorProb {
+        // Generate an error nucleotide
+        
+        let errorNucleotide: Nucleotide
+        switch arc4random_uniform(3) {
+        case 0:
+            errorNucleotide = .A
+        case 1:
+            errorNucleotide = .C
+        case 2:
+            errorNucleotide = .G
+        default:
+            assertionFailure("Random number generator generated number out of 0..<4 range")
+            errorNucleotide = .A
+        }
+        
+        return .Known(errorNucleotide == nucleotide ? .T : errorNucleotide, errorProb)
+    } else {
+        // Keep the same nucleotide
+        
+        return .Known(nucleotide, errorProb)
+    }
 }
 
 func exampleGenerateProbNucleotdeLikeFASTQ(fastqType: FASTQType, @noescape generateErrorProb: () -> Double) -> ProbNucleotide {

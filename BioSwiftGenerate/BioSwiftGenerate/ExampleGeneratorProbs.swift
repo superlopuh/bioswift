@@ -48,3 +48,7 @@ func exampleGenerateProbNucleotdeLikeFASTQ(fastqType: FASTQType, @noescape gener
         return .Known(nucleotide, fastqType.scoreToProb(score))
     }
 }
+
+func randomDouble() -> Double {
+    return Double(arc4random()) / Double(UINT32_MAX)
+}

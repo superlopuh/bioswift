@@ -11,11 +11,11 @@ import Foundation
 import BioSwiftCore
 import BioSwiftFastq
 
-func exampleGenerateErrorProb() -> Double {
+public func exampleGenerateErrorProb() -> Double {
     return 0.9
 }
 
-func exampleGenerateProbNucleotide(@noescape generateErrorProb: () -> Double) -> ProbNucleotide {
+public func exampleGenerateProbNucleotide(@noescape generateErrorProb: () -> Double) -> ProbNucleotide {
     let randomNumber = arc4random_uniform(4)
     
     let nucleotide: Nucleotide
@@ -60,7 +60,7 @@ func exampleGenerateProbNucleotide(@noescape generateErrorProb: () -> Double) ->
     }
 }
 
-func exampleGenerateProbNucleotdeLikeFASTQ(fastqType: FASTQType, @noescape generateErrorProb: () -> Double) -> ProbNucleotide {
+public func exampleGenerateProbNucleotdeLikeFASTQ(fastqType: FASTQType, @noescape generateErrorProb: () -> Double) -> ProbNucleotide {
     switch exampleGenerateProbNucleotide(generateErrorProb) {
     case .Unknown:
         return .Unknown
@@ -68,6 +68,47 @@ func exampleGenerateProbNucleotdeLikeFASTQ(fastqType: FASTQType, @noescape gener
         let score = fastqType.probToScore(errorProb)
         
         return .Known(nucleotide, fastqType.scoreToProb(score))
+    }
+}
+
+func exampleProbabilityMatch(aNucleotide: Nucleotide, anotherNucleotide: Nucleotide) -> Double {
+    return aNucleotide == anotherNucleotide ? 1.0 : 0.0
+}
+
+func exampleProbabilityMatch(aNucleotide: Nucleotide, anotherNucleotide: ProbNucleotide) -> Double {
+    switch anotherNucleotide {
+    case .Unknown:
+        return 0.25
+    case let .Known(nucleotide, errorProb):
+        return aNucleotide == nucleotide ? 1.0 - errorProb : (errorProb / 3.0)
+    }
+}
+
+func exampleProbabilityMatch(aNucleotide: ProbNucleotide, anotherNucleotide: Nucleotide) -> Double {
+    return exampleProbabilityMatch(anotherNucleotide, aNucleotide)
+}
+
+func exampleProbabilityMatch(aNucleotide: ProbNucleotide, anotherNucleotide: ProbNucleotide) -> Double {
+    var probability = 0.0
+    
+    
+    
+    return probability
+}
+
+// Watch out for returning 0 for unseen NucleotideTypes
+public func exampleProbabilityMatch(aNucleotide: NucleotideType, anotherNucleotide: NucleotideType) -> Double {
+    if let aNuc = aNucleotide as? Nucleotide, let anotherNuc = anotherNucleotide as? Nucleotide {
+        return exampleProbabilityMatch(aNuc, anotherNuc)
+    } else if let aNuc = aNucleotide as? Nucleotide, let anotherNuc = anotherNucleotide as? ProbNucleotide {
+        return exampleProbabilityMatch(aNuc, anotherNuc)
+    } else if let aNuc = aNucleotide as? ProbNucleotide, let anotherNuc = anotherNucleotide as? Nucleotide {
+        return exampleProbabilityMatch(aNuc, anotherNuc)
+    } else if let aNuc = aNucleotide as? ProbNucleotide, let anotherNuc = anotherNucleotide as? ProbNucleotide {
+        return exampleProbabilityMatch(aNuc, anotherNuc)
+    } else {
+        // Only return a reasonable answer if it's a known type
+        return 0.0
     }
 }
 

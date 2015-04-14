@@ -18,7 +18,7 @@ public struct FASTQ {
     public let qualityString: String
     
     // Derived structure
-    public let probDNASequence: ProbDNASequence
+    public let probDNASequence: DNASeq<ProbNucleotide>
     
     public init?(fastqInfoString: String, dnaString: String, qualityString: String, fastqType: FASTQType) {
         self.fastqType          = fastqType
@@ -33,12 +33,22 @@ public struct FASTQ {
         }
         
         if let errorProbArray = unwrap(optionalErrorProbArray) {
-            if let probDNASequence = ProbDNASequence(dnaString: dnaString, errorProbArray: errorProbArray) {
-                self.probDNASequence = probDNASequence
-            } else {
-                println("Could not initialise ProbDNASequence")
-                return nil
+            var nucleotideArray = [ProbNucleotide]()
+            for (index, character) in enumerate(dnaString) {
+                if let nucleotide = Nucleotide(char: character) {
+                    let probNucleotide = ProbNucleotide.Known(nucleotide, errorProbArray[index])
+                    nucleotideArray.append(probNucleotide)
+                } else if Character("N") == character {
+                    // Unknown error probability
+                    nucleotideArray.append(.Unknown)
+                } else {
+                    println("Could not initialise ProbNucleotide from \(character)")
+                    return nil
+                }
             }
+            
+            self.probDNASequence = DNASeq<ProbNucleotide>(nucleotideArray)
+            
         } else {
             println("QualityString did not unwrap successfully")
             return nil

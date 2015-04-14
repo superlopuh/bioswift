@@ -10,7 +10,7 @@ import Foundation
 import BioSwiftCore
 
 public class DNASequenceGenerator {
-    public static func generateSequence(ofLength length: Int) -> DNASequence {
+    public static func generateSequence(ofLength length: Int) -> DNASeq<Nucleotide> {
         var nucleotideArray = [Nucleotide]()
         
         for i in 0..<length {
@@ -36,6 +36,6 @@ public class DNASequenceGenerator {
         
         assert(nucleotideArray.count == length, "NucleotideArray length doesn't match up")
         
-        return DNASequence(nucleotideArray)
+        return DNASeq<Nucleotide>(nucleotideArray)
     }
 }

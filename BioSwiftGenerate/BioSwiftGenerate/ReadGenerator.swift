@@ -10,11 +10,11 @@ import Foundation
 import BioSwiftCore
 
 public class ReadGenerator {
-    public static func generateReads(fromSequence initialSequence: DNASeq<Nucleotide>, readLength: Int) -> [DNASeq<Nucleotide>] {
+    public static func generateReads<N: NucleotideType>(fromSequence initialSequence: DNASeq<N>, readLength: Int) -> [DNASeq<N>] {
         let sequenceLength = initialSequence.length
         assert(readLength <= sequenceLength, "Can't generate reads longer than original sequence")
         
-        var reads: [DNASeq<Nucleotide>] = []
+        var reads: [DNASeq<N>] = []
         
         for startIndex in 0...(sequenceLength - readLength) {
             reads.append(initialSequence[startIndex..<startIndex + readLength])

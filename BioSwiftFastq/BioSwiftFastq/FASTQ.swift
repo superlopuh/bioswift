@@ -63,4 +63,28 @@ public struct FASTQ {
         
         return stringToWrite
     }
+    
+    public func reverseAndComplement() -> FASTQ? {
+        var complementedDNAArray = [Character]()
+        
+        for character in Array(dnaString) {
+            switch character {
+            case Character("A"):
+                complementedDNAArray.append(Character("T"))
+            case Character("T"):
+                complementedDNAArray.append(Character("A"))
+            case Character("C"):
+                complementedDNAArray.append(Character("G"))
+            case Character("G"):
+                complementedDNAArray.append(Character("C"))
+            default:
+                return nil
+            }
+        }
+        
+        let newDNAString        = String(complementedDNAArray.reverse())
+        
+        let newQualityString    = String(Array(qualityString).reverse())
+        return FASTQ(fastqInfoString: fastqInfoString, dnaString: newDNAString, qualityString: newQualityString, fastqType: fastqType)
+    }
 }

@@ -9,6 +9,8 @@
 import Foundation
 
 public struct DNASeq<N: NucleotideType>: Printable {
+    public typealias Nuc = N
+    
     public var nucleotideArray: [N]
     public var length: Int {
         return nucleotideArray.count

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum ProbNucleotide: NucleotideType {
+public enum ProbNucleotide: NucleotideType, Hashable {
     case Unknown
     case Known(Nucleotide, Double)
     
@@ -32,5 +32,25 @@ public enum ProbNucleotide: NucleotideType {
         case .Known(let nucleotide, _):
             return nucleotide.description
         }
+    }
+    
+    public var hashValue: Int {
+        switch self {
+        case .Unknown:
+            return 0
+        case let .Known(nuc, errorProb):
+            return nuc.hashValue * 3 + errorProb.hashValue
+        }
+    }
+}
+
+public func ==(lhs:ProbNucleotide, rhs: ProbNucleotide) -> Bool {
+    switch (lhs, rhs) {
+    case (.Unknown, .Unknown):
+        return true
+    case let (.Known(lhsNuc, lhsErrorProb), .Known(rhsNuc, rhsErrorProb)):
+        return lhsNuc == rhsNuc && lhsErrorProb == rhsErrorProb
+    default:
+        return false
     }
 }

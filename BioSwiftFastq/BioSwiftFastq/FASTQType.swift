@@ -33,7 +33,7 @@ public enum FASTQType {
         return Int(-10.0 * log10(errorProbability))
     }
     
-    public func charToProb(character: Character) -> Double? {
+    public func charToScore(character: Character) -> Int? {
         // Mess about with Swift strings to get ascii
         let unicodeScalarView = String(character).unicodeScalars
         let firstUnicodeScalar: UnicodeScalar = unicodeScalarView[unicodeScalarView.startIndex]
@@ -49,15 +49,21 @@ public enum FASTQType {
         
         let qualityScore = adjustedQ - getPhred()
         
-        let errorProbability = scoreToProb(qualityScore)
-        
         switch self{
         case .Sanger:
-            return errorProbability
+            return qualityScore
         case .Illumina18:
-            return errorProbability
+            return qualityScore
         case .Illumina15:
             println("Illumina 1.5 FASTQ not yet implemented")
+            return nil
+        }
+    }
+    
+    public func charToProb(character: Character) -> Double? {
+        if let score = charToScore(character) {
+            return scoreToProb(score)
+        } else {
             return nil
         }
     }

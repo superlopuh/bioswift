@@ -12,7 +12,7 @@ import BioSwiftCore
 public class FASTQReader {
     // Get as many FASTQ sequences from start of file as possible
     // Does not check for file being valid
-    private static func getFASTQStringsSequenceFromFile(fileAddress: NSURL, ofFASTQType fastqType: FASTQType) -> FASTQStringsSequence<[String]> {
+    private static func getFASTQStringsSequenceFromFile(fileAddress: NSURL, ofFASTQType fastqType: FASTQType) -> FASTQStringsSequence {
         if let fileContent = NSString(contentsOfURL: fileAddress, encoding: NSUTF8StringEncoding, error: nil) {
             println("FASTQ file length \(fileContent.length)")
             let fastqStringArray = fileContent.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) as! [String]

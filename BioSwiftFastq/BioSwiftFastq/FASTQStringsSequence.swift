@@ -8,11 +8,14 @@
 
 import Foundation
 
-struct FASTQStringsSequence<S: SequenceType where S.Generator.Element == String>: SequenceType {
-    private var stringsSequence: S
+struct FASTQStringsSequence: SequenceType {
+    private var stringsSequence: [String]
     
-    internal init(stringsSequence: S) {
-        self.stringsSequence = stringsSequence
+    internal var count: Int
+    
+    internal init(stringsSequence: [String]) {
+        self.stringsSequence    = stringsSequence
+        self.count              = stringsSequence.count/4
     }
     
     func generate() -> GeneratorOf<FASTQStrings> {

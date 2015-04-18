@@ -9,10 +9,14 @@
 import Foundation
 
 struct LazyFASTQStringsCollection: SequenceType {
-    private var stringsCollection: SequenceOf<String>
+    private var stringsSequence: SequenceOf<String>
+    
+    internal init(stringsSequence: SequenceOf<String>) {
+        self.stringsSequence = stringsSequence
+    }
     
     func generate() -> GeneratorOf<FASTQStrings> {
-        var gen = stringsCollection.generate()
+        var gen = stringsSequence.generate()
         
         return GeneratorOf<FASTQStrings> {
             if

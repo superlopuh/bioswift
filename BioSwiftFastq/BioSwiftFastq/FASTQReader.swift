@@ -107,11 +107,40 @@ public class FASTQReader {
     public static func getProbNucleotideDistribution(fileAddress: NSURL, ofFASTQType fastqType: FASTQType) -> [ProbNucleotide:Int] {
         var distribution: [ProbNucleotide:Int] = [:]
         
-        let fastqArray = FASTQReader.getArrayFromFile(fileAddress, ofFASTQType: fastqType)
+        let fastqStringsSequence = FASTQReader.getFASTQStringsSequenceFromFile(fileAddress)
         
-        for fastq in fastqArray {
-            for probNucleotide in fastq.probDNASequence.nucleotideArray {
+        let lazySequence = lazy(fastqStringsSequence)
+        
+        let lazyDistributionSequence = lazySequence.map() { (fastqStrings: FASTQStrings) -> [ProbNucleotide:Int] in
+            var distribution: [ProbNucleotide:Int] = [:]
+            
+            let dnaArray        = Array(fastqStrings.dnaString)
+            let qualityArray    = Array(fastqStrings.qualityString)
+            
+            assert(count(dnaArray) == count(qualityArray), "dnaArray different length to qualityArray: malformed FASTQ file")
+            
+            let pairArray       = zip(dnaArray, qualityArray)
+            
+            for (dnaChar, qualityChar) in pairArray {
+                let probNucleotide: ProbNucleotide
+                if let nucleotide = Nucleotide(char: dnaChar), let errorProb = fastqType.charToProb(qualityChar) {
+                    probNucleotide = ProbNucleotide.Known(nucleotide, errorProb)
+                } else if Character("N") == dnaChar {
+                    // Unknown error probability
+                    probNucleotide = .Unknown
+                } else {
+                    assertionFailure("Could not initialise ProbNucleotide from \(dnaChar)")
+                    probNucleotide = .Unknown
+                }
                 distribution[probNucleotide] = 1 + (distribution[probNucleotide] ?? 0)
+            }
+            
+            return distribution
+        }
+        
+        for dist in lazyDistributionSequence {
+            for (probNucleotide, number) in dist {
+                distribution[probNucleotide] = number + (distribution[probNucleotide] ?? 0)
             }
         }
         

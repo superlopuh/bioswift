@@ -17,8 +17,14 @@ public class FASTQReader {
         var sequences = [FASTQ]()
         
         if let fileContent = NSString(contentsOfURL: fileAddress, encoding: NSUTF8StringEncoding, error: nil) {
-            println(fileContent.length)
+            println("FASTQ file length \(fileContent.length)")
             let fastqStringArray = fileContent.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) as! [String]
+            
+            let hello = lazy(fastqStringArray)
+            
+            let dateStart = NSDate()
+            
+            println("Date start: \(dateStart)")
             
             var gen = fastqStringArray.generate()
             while
@@ -34,6 +40,8 @@ public class FASTQReader {
             }
         }
         // End of file
+        
+        println("Date end: \(NSDate())")
         
         return sequences
     }

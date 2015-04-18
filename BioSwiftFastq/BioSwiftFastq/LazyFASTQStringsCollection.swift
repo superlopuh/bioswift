@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct LazyFASTQStringsCollection: SequenceType {
-    private var stringsSequence: SequenceOf<String>
+struct LazyFASTQStringsCollection<S: SequenceType where S.Generator.Element == String>: SequenceType {
+    private var stringsSequence: S
     
-    internal init(stringsSequence: SequenceOf<String>) {
+    internal init(stringsSequence: S) {
         self.stringsSequence = stringsSequence
     }
     

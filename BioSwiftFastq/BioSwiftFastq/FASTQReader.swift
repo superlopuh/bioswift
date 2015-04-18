@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import BioSwiftCore
 
 public class FASTQReader {
     // Get as many FASTQ sequences from start of file as possible
@@ -79,5 +80,20 @@ public class FASTQReader {
         println("Date end: \(NSDate())")
         
         return sequences
+    }
+    
+    // Returns a dictionary of probNucleotide to count
+    public static func getProbNucleotideDistribution(fileAddress: NSURL, ofFASTQType fastqType: FASTQType) -> [ProbNucleotide:Int] {
+        var distribution: [ProbNucleotide:Int] = [:]
+        
+        let fastqArray = FASTQReader.getArrayFromFile(fileAddress, ofFASTQType: fastqType)
+        
+        for fastq in fastqArray {
+            for probNucleotide in fastq.probDNASequence.nucleotideArray {
+                distribution[probNucleotide] = 1 + (distribution[probNucleotide] ?? 0)
+            }
+        }
+        
+        return distribution
     }
 }

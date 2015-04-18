@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A673790A1AE2773700CC4075 /* FASTQStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67379091AE2773700CC4075 /* FASTQStrings.swift */; };
-		A673790C1AE2788800CC4075 /* LazyFASTQStringsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A673790B1AE2788800CC4075 /* LazyFASTQStringsCollection.swift */; };
 		A673790E1AE29BA200CC4075 /* FASTQStringsSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A673790D1AE29BA200CC4075 /* FASTQStringsSequence.swift */; };
 		A6799CEC1AC2CF93002799DA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6799CEB1AC2CF93002799DA /* Extensions.swift */; };
 		A6799CEE1AC2DC58002799DA /* FASTQReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6799CED1AC2DC58002799DA /* FASTQReader.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		A67379091AE2773700CC4075 /* FASTQStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FASTQStrings.swift; sourceTree = "<group>"; };
-		A673790B1AE2788800CC4075 /* LazyFASTQStringsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyFASTQStringsCollection.swift; sourceTree = "<group>"; };
 		A673790D1AE29BA200CC4075 /* FASTQStringsSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FASTQStringsSequence.swift; sourceTree = "<group>"; };
 		A6799CEB1AC2CF93002799DA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A6799CED1AC2DC58002799DA /* FASTQReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FASTQReader.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 				A6DCFF7F1AC0B2A9007E86D1 /* FASTQ.swift */,
 				A67379091AE2773700CC4075 /* FASTQStrings.swift */,
 				A6799CED1AC2DC58002799DA /* FASTQReader.swift */,
-				A673790B1AE2788800CC4075 /* LazyFASTQStringsCollection.swift */,
 				A673790D1AE29BA200CC4075 /* FASTQStringsSequence.swift */,
 				A6799CEB1AC2CF93002799DA /* Extensions.swift */,
 				A6DCFF641AC0B20F007E86D1 /* Supporting Files */,
@@ -232,7 +229,6 @@
 			files = (
 				A6DCFF7E1AC0B240007E86D1 /* FASTQType.swift in Sources */,
 				A6799CEC1AC2CF93002799DA /* Extensions.swift in Sources */,
-				A673790C1AE2788800CC4075 /* LazyFASTQStringsCollection.swift in Sources */,
 				A673790E1AE29BA200CC4075 /* FASTQStringsSequence.swift in Sources */,
 				A673790A1AE2773700CC4075 /* FASTQStrings.swift in Sources */,
 				A6799CEE1AC2DC58002799DA /* FASTQReader.swift in Sources */,

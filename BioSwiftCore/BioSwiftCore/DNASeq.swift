@@ -26,6 +26,10 @@ public struct DNASeq<N: NucleotideType>: Printable {
         self.nucleotideArray = nucleotideArray
     }
     
+    public func getReverseAndComplement() -> DNASeq<N>  {
+        return DNASeq<N>(nucleotideArray.reverse().map({$0.complement}))
+    }
+    
     public func subsequence(subRange: Range<Int>) -> DNASeq<N> {
         assert(subRange.startIndex >= 0 && subRange.endIndex <= length, "Subrange invalid")
         

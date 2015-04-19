@@ -30,24 +30,36 @@ public class FASTQDistribution {
     }
     
     public init?(fileAddress: NSURL) {
-        if let filePath = fileAddress.path where NSFileManager.defaultManager().fileExistsAtPath(filePath) {
-            if  let myDict = NSDictionary(contentsOfURL: fileAddress),
-                let aDist = myDict[aDistKey] as? NSDictionary {
-                    println(aDist)
-                    self.aDistribution = [:]
-                    self.tDistribution = [:]
-                    self.gDistribution = [:]
-                    self.cDistribution = [:]
-                    self.nDistribution = [:]
-                    return
-            }
+        if let filePath = fileAddress.path where NSFileManager.defaultManager().fileExistsAtPath(filePath),
+            let myDict = NSDictionary(contentsOfURL: fileAddress),
+            let aDist = myDict[aDistKey] as? [String:Int],
+            let tDist = myDict[tDistKey] as? [String:Int],
+            let gDist = myDict[gDistKey] as? [String:Int],
+            let cDist = myDict[cDistKey] as? [String:Int],
+            let nDist = myDict[nDistKey] as? [String:Int] {
+                self.aDistribution = aDist.map() {
+                    return (Character($0), $1)
+                }
+                self.tDistribution = tDist.map() {
+                    return (Character($0), $1)
+                }
+                self.gDistribution = gDist.map() {
+                    return (Character($0), $1)
+                }
+                self.cDistribution = cDist.map() {
+                    return (Character($0), $1)
+                }
+                self.nDistribution = nDist.map() {
+                    return (Character($0), $1)
+                }
+        } else {
+            self.aDistribution = [:]
+            self.tDistribution = [:]
+            self.gDistribution = [:]
+            self.cDistribution = [:]
+            self.nDistribution = [:]
+            return nil
         }
-        self.aDistribution = [:]
-        self.tDistribution = [:]
-        self.gDistribution = [:]
-        self.cDistribution = [:]
-        self.nDistribution = [:]
-        return nil
     }
     
     public func writeToPlist(atAddress fileAddress: NSURL) {

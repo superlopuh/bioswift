@@ -97,7 +97,7 @@ func exampleProbabilityMatch(aNucleotide: ProbNucleotide, anotherNucleotide: Pro
 }
 
 // Watch out for returning 0 for unseen NucleotideTypes
-public func exampleProbabilityMatch(aNucleotide: NucleotideType, anotherNucleotide: NucleotideType) -> Double {
+public func exampleProbabilityMatch<N: NucleotideType>(aNucleotide: N, anotherNucleotide: N) -> Double {
     if let aNuc = aNucleotide as? Nucleotide, let anotherNuc = anotherNucleotide as? Nucleotide {
         return exampleProbabilityMatch(aNuc, anotherNuc)
     } else if let aNuc = aNucleotide as? Nucleotide, let anotherNuc = anotherNucleotide as? ProbNucleotide {

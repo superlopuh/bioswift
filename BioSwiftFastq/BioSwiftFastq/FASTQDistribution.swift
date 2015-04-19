@@ -111,6 +111,26 @@ public class FASTQDistribution {
             println("Saved distribution:\n\(resultDict)")
         }
     }
+    
+    public lazy var aCount: Int = {
+        return Array(self.aDistribution).reduce(0, combine: {$0 + $1.1})
+    }()
+    
+    public lazy var tCount: Int = {
+        return Array(self.tDistribution).reduce(0, combine: {$0 + $1.1})
+    }()
+    
+    public lazy var gCount: Int = {
+        return Array(self.gDistribution).reduce(0, combine: {$0 + $1.1})
+    }()
+    
+    public lazy var cCount: Int = {
+        return Array(self.cDistribution).reduce(0, combine: {$0 + $1.1})
+    }()
+    
+    public lazy var nCount: Int = {
+        return Array(self.nDistribution).reduce(0, combine: {$0 + $1.1})
+    }()
 }
 
 extension FASTQDistribution: Printable {

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A621A7A71ADADE40001008F8 /* ExampleGeneratorProbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A621A7A61ADADE40001008F8 /* ExampleGeneratorProbs.swift */; };
 		A62F33961AC58CFD00C50601 /* DNASequenceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62F33951AC58CFD00C50601 /* DNASequenceGenerator.swift */; };
 		A62F33C41AC5A8BB00C50601 /* ProbDNASequenceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62F33C31AC5A8BB00C50601 /* ProbDNASequenceGenerator.swift */; };
 		A6DCFF931AC16A5E007E86D1 /* BioSwiftGenerate.h in Headers */ = {isa = PBXBuildFile; fileRef = A6DCFF921AC16A5E007E86D1 /* BioSwiftGenerate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,7 +26,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A621A7A61ADADE40001008F8 /* ExampleGeneratorProbs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleGeneratorProbs.swift; sourceTree = "<group>"; };
 		A62F33951AC58CFD00C50601 /* DNASequenceGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNASequenceGenerator.swift; sourceTree = "<group>"; };
 		A62F33C31AC5A8BB00C50601 /* ProbDNASequenceGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProbDNASequenceGenerator.swift; sourceTree = "<group>"; };
 		A6DCFF8D1AC16A5E007E86D1 /* BioSwiftGenerate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BioSwiftGenerate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +81,6 @@
 				A6DCFFA91AC16AB7007E86D1 /* ReadGenerator.swift */,
 				A62F33951AC58CFD00C50601 /* DNASequenceGenerator.swift */,
 				A62F33C31AC5A8BB00C50601 /* ProbDNASequenceGenerator.swift */,
-				A621A7A61ADADE40001008F8 /* ExampleGeneratorProbs.swift */,
 				A6DCFF901AC16A5E007E86D1 /* Supporting Files */,
 			);
 			path = BioSwiftGenerate;
@@ -224,7 +221,6 @@
 				A62F33961AC58CFD00C50601 /* DNASequenceGenerator.swift in Sources */,
 				A6DCFFAA1AC16AB7007E86D1 /* ReadGenerator.swift in Sources */,
 				A62F33C41AC5A8BB00C50601 /* ProbDNASequenceGenerator.swift in Sources */,
-				A621A7A71ADADE40001008F8 /* ExampleGeneratorProbs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

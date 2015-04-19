@@ -28,4 +28,38 @@ public class FASTQDistribution {
         self.cDistribution = cDistribution
         self.nDistribution = nDistribution
     }
+    
+    public func writeToPlist(atPath filePath: String) {
+        var dict: NSMutableDictionary = [:]
+        
+        // Character is not a serialisable type, have to map to String
+        let myADist = aDistribution.map {
+            return (String($0), $1)
+        }
+        let myTDist = tDistribution.map {
+            return (String($0), $1)
+        }
+        let myGDist = gDistribution.map {
+            return (String($0), $1)
+        }
+        let myCDist = cDistribution.map {
+            return (String($0), $1)
+        }
+        let myNDist = nDistribution.map {
+            return (String($0), $1)
+        }
+        
+        // Set values to the dictionary being written
+        dict.setObject(myADist, forKey: aDistKey)
+        dict.setObject(myTDist, forKey: tDistKey)
+        dict.setObject(myGDist, forKey: gDistKey)
+        dict.setObject(myCDist, forKey: cDistKey)
+        dict.setObject(myNDist, forKey: nDistKey)
+        
+        dict.writeToFile(filePath, atomically: false)
+        
+        // Test that everything was written correctly
+        let resultDict = NSMutableDictionary(contentsOfFile: filePath)
+        println("Saved distribution:\n\(resultDict)")
+    }
 }

@@ -10,4 +10,5 @@ import Foundation
 
 public protocol NucleotideType: Printable {
     func probOfMatchWithNucleotide(nucleotide: Nucleotide) -> Double
+    var complement: Self {get}
 }

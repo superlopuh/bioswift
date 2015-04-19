@@ -18,6 +18,19 @@ public enum Nucleotide: Character, NucleotideType {
         return nucleotide == self ? 1.0 : 0.0
     }
     
+    public var complement: Nucleotide {
+        switch self {
+        case .A:
+            return .T
+        case .T:
+            return .A
+        case .G:
+            return .C
+        case .C:
+            return .G
+        }
+    }
+    
     public init?(char: Character) {
         switch char {
         case Character("A"):

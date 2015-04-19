@@ -25,6 +25,15 @@ public enum ProbNucleotide: NucleotideType, Hashable {
         }
     }
     
+    public var complement: ProbNucleotide {
+        switch self {
+        case .Unknown:
+            return .Unknown
+        case let .Known(nuc, errorProb):
+            return .Known(nuc.complement, errorProb)
+        }
+    }
+    
     public var description: String {
         switch self {
         case .Unknown:

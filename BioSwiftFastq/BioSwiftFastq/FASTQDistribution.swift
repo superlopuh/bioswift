@@ -8,6 +8,12 @@
 
 import Foundation
 
+private let aDistKey = "aDistribution"
+private let tDistKey = "tDistribution"
+private let gDistKey = "gDistribution"
+private let cDistKey = "cDistribution"
+private let nDistKey = "nDistribution"
+
 public class FASTQDistribution {
     public let aDistribution: [Character:Int]
     public let tDistribution: [Character:Int]

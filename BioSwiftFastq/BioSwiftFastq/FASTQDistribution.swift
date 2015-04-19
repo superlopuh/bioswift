@@ -50,38 +50,54 @@ public class FASTQDistribution {
         return nil
     }
     
-    public func writeToPlist(atPath filePath: String) {
-        var dict: NSMutableDictionary = [:]
-        
-        // Character is not a serialisable type, have to map to String
-        let myADist = aDistribution.map {
-            return (String($0), $1)
+    public func writeToPlist(atAddress fileAddress: NSURL) {
+        if let filePath = fileAddress.path {
+            var dict: NSMutableDictionary = [:]
+            
+            // Character is not a serialisable type, have to map to String
+            let myADist = aDistribution.map {
+                return (String($0), $1)
+            }
+            let myTDist = tDistribution.map {
+                return (String($0), $1)
+            }
+            let myGDist = gDistribution.map {
+                return (String($0), $1)
+            }
+            let myCDist = cDistribution.map {
+                return (String($0), $1)
+            }
+            let myNDist = nDistribution.map {
+                return (String($0), $1)
+            }
+            
+            // Set values to the dictionary being written
+            dict.setObject(myADist, forKey: aDistKey)
+            dict.setObject(myTDist, forKey: tDistKey)
+            dict.setObject(myGDist, forKey: gDistKey)
+            dict.setObject(myCDist, forKey: cDistKey)
+            dict.setObject(myNDist, forKey: nDistKey)
+            
+            // If folder doesn't exist, create one
+            if let folderPath = fileAddress.URLByDeletingLastPathComponent?.path {
+                // check if element is a directory
+                var isDirectory: ObjCBool = ObjCBool(false)
+                // Mutates isDirectory pointer
+                NSFileManager.defaultManager().fileExistsAtPath(folderPath, isDirectory: &isDirectory)
+                
+                if !isDirectory {
+                    var error: NSError?
+                    
+                    NSFileManager.defaultManager().createDirectoryAtPath(folderPath, withIntermediateDirectories: false, attributes: nil, error: &error)
+                }
+            }
+            
+            dict.writeToFile(filePath, atomically: false)
+            
+            // Test that everything was written correctly
+            let resultDict = NSMutableDictionary(contentsOfFile: filePath)
+            println("Saved distribution:\n\(resultDict)")
         }
-        let myTDist = tDistribution.map {
-            return (String($0), $1)
-        }
-        let myGDist = gDistribution.map {
-            return (String($0), $1)
-        }
-        let myCDist = cDistribution.map {
-            return (String($0), $1)
-        }
-        let myNDist = nDistribution.map {
-            return (String($0), $1)
-        }
-        
-        // Set values to the dictionary being written
-        dict.setObject(myADist, forKey: aDistKey)
-        dict.setObject(myTDist, forKey: tDistKey)
-        dict.setObject(myGDist, forKey: gDistKey)
-        dict.setObject(myCDist, forKey: cDistKey)
-        dict.setObject(myNDist, forKey: nDistKey)
-        
-        dict.writeToFile(filePath, atomically: false)
-        
-        // Test that everything was written correctly
-        let resultDict = NSMutableDictionary(contentsOfFile: filePath)
-        println("Saved distribution:\n\(resultDict)")
     }
 }
 

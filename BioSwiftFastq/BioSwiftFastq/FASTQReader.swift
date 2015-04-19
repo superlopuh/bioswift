@@ -103,6 +103,44 @@ public class FASTQReader {
         return sequences
     }
     
+    public static func getFASTQDistributionFromFile(fileAddress: NSURL) -> FASTQDistribution {
+        var aDistribution: [Character:Int] = [:]
+        var tDistribution: [Character:Int] = [:]
+        var gDistribution: [Character:Int] = [:]
+        var cDistribution: [Character:Int] = [:]
+        var nDistribution: [Character:Int] = [:]
+        
+        let fastqStringsSequence = FASTQReader.getFASTQStringsSequenceFromFile(fileAddress)
+        
+        for fastqStrings in fastqStringsSequence {
+            let dnaArray        = Array(fastqStrings.dnaString)
+            let qualityArray    = Array(fastqStrings.qualityString)
+            
+            assert(count(dnaArray) == count(qualityArray), "dnaArray different length to qualityArray: malformed FASTQ file")
+            
+            let pairArray       = zip(dnaArray, qualityArray)
+            for (dnaChar, qualityChar) in pairArray {
+                switch dnaChar {
+                case Character("A"):
+                    aDistribution[qualityChar] = 1 + (aDistribution[qualityChar] ?? 0)
+                case Character("T"):
+                    tDistribution[qualityChar] = 1 + (tDistribution[qualityChar] ?? 0)
+                case Character("G"):
+                    gDistribution[qualityChar] = 1 + (gDistribution[qualityChar] ?? 0)
+                case Character("C"):
+                    cDistribution[qualityChar] = 1 + (cDistribution[qualityChar] ?? 0)
+                case Character("N"):
+                    nDistribution[qualityChar] = 1 + (nDistribution[qualityChar] ?? 0)
+                default:
+                    assertionFailure("Surprise character \"\(dnaChar)\" in DNA string")
+                }
+            }
+        }
+        
+        let distribution = FASTQDistribution(aDistribution: aDistribution, tDistribution: tDistribution, gDistribution: gDistribution, cDistribution: cDistribution, nDistribution: nDistribution)
+        return distribution
+    }
+    
     // Returns a dictionary of probNucleotide to count
     public static func getProbNucleotideDistribution(fileAddress: NSURL, ofFASTQType fastqType: FASTQType) -> [ProbNucleotide:Int] {
         var distribution: [ProbNucleotide:Int] = [:]

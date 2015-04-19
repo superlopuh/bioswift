@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import BioSwiftCore
 
 private let aDistKey = "aDistribution"
 private let tDistKey = "tDistribution"
@@ -131,6 +132,43 @@ public class FASTQDistribution {
     public lazy var nCount: Int = {
         return Array(self.nDistribution).reduce(0, combine: {$0 + $1.1})
     }()
+    
+    // For getting probability of a certain ProbNucleotide being generated
+    public func getProbabilityCalculatorForFASTQType(fastqType: FASTQType) -> ProbNucleotide -> Double {
+        var probDictionary = [ProbNucleotide:Double]()
+        
+        let totalCount = Double(aCount + tCount + gCount + cCount + nCount)
+        
+        for (character, count) in aDistribution {
+            if let errorProb = fastqType.charToProb(character) {
+                probDictionary[.Known(.A ,errorProb)] = Double(count)/totalCount
+            }
+        }
+        
+        for (character, count) in aDistribution {
+            if let errorProb = fastqType.charToProb(character) {
+                probDictionary[.Known(.A ,errorProb)] = Double(count)/totalCount
+            }
+        }
+        
+        for (character, count) in aDistribution {
+            if let errorProb = fastqType.charToProb(character) {
+                probDictionary[.Known(.A ,errorProb)] = Double(count)/totalCount
+            }
+        }
+        
+        for (character, count) in aDistribution {
+            if let errorProb = fastqType.charToProb(character) {
+                probDictionary[.Known(.A ,errorProb)] = Double(count)/totalCount
+            }
+        }
+        
+        probDictionary[.Unknown] = Double(nCount)/totalCount
+        
+        return {(probNucleotide: ProbNucleotide) -> Double in
+            return probDictionary[probNucleotide] ?? 0.0
+        }
+    }
 }
 
 extension FASTQDistribution: Printable {

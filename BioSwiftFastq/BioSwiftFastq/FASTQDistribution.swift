@@ -63,3 +63,38 @@ public class FASTQDistribution {
         println("Saved distribution:\n\(resultDict)")
     }
 }
+
+extension FASTQDistribution: Printable {
+    public var description: String {
+        var description = "FASTQ distribution:\n"
+        
+        func charDictDescription(charDict: [Character:Int]) -> String {
+            let charPairArray = Array(charDict)
+            
+            let sortedPairArray = charPairArray.sorted() {(lhsPair: (char: Character, Int), rhsPair: (char: Character, Int)) -> Bool in
+                return lhsPair.char.scalarValue < rhsPair.char.scalarValue
+            }
+            
+            return sortedPairArray.reduce("") {(previous: String, nextPair: (char: Character, count: Int)) -> String in
+                return previous + "\(nextPair.char) - \(nextPair.count)\n"
+            }
+        }
+        
+        description +=   "A:\n" + charDictDescription(aDistribution)
+        description += "\nT:\n" + charDictDescription(tDistribution)
+        description += "\nG:\n" + charDictDescription(gDistribution)
+        description += "\nC:\n" + charDictDescription(cDistribution)
+        description += "\nN:\n" + charDictDescription(nDistribution)
+        
+        return description
+    }
+}
+
+extension Character {
+    var scalarValue: Int {
+        let unicodeScalarView = String(self).unicodeScalars
+        let firstUnicodeScalar: UnicodeScalar = unicodeScalarView[unicodeScalarView.startIndex]
+        
+        return Int(firstUnicodeScalar.value)
+    }
+}

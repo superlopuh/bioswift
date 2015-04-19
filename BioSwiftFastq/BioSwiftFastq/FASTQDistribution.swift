@@ -133,6 +133,10 @@ public class FASTQDistribution {
         return Array(self.nDistribution).reduce(0, combine: {$0 + $1.1})
     }()
     
+    public lazy var atCount: Int = {self.aCount + self.tCount}()
+    
+    public lazy var gcCount: Int = {self.gCount + self.cCount}()
+    
     // For getting probability of a certain ProbNucleotide being generated
     public func getProbabilityCalculatorForFASTQType(fastqType: FASTQType) -> ProbNucleotide -> Double {
         var probDictionary = [ProbNucleotide:Double]()

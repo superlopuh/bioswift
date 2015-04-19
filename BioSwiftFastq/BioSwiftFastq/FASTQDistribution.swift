@@ -29,6 +29,27 @@ public class FASTQDistribution {
         self.nDistribution = nDistribution
     }
     
+    public init?(fileAddress: NSURL) {
+        if let filePath = fileAddress.path where NSFileManager.defaultManager().fileExistsAtPath(filePath) {
+            if  let myDict = NSDictionary(contentsOfURL: fileAddress),
+                let aDist = myDict[aDistKey] as? NSDictionary {
+                    println(aDist)
+                    self.aDistribution = [:]
+                    self.tDistribution = [:]
+                    self.gDistribution = [:]
+                    self.cDistribution = [:]
+                    self.nDistribution = [:]
+                    return
+            }
+        }
+        self.aDistribution = [:]
+        self.tDistribution = [:]
+        self.gDistribution = [:]
+        self.cDistribution = [:]
+        self.nDistribution = [:]
+        return nil
+    }
+    
     public func writeToPlist(atPath filePath: String) {
         var dict: NSMutableDictionary = [:]
         

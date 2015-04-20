@@ -64,7 +64,7 @@ public struct FASTQ {
         return stringToWrite
     }
     
-    public func reverseAndComplement() -> FASTQ? {
+    public func reverseAndComplement() -> FASTQ {
         var complementedDNAArray = [Character]()
         
         for character in Array(dnaString) {
@@ -77,14 +77,16 @@ public struct FASTQ {
                 complementedDNAArray.append(Character("G"))
             case Character("G"):
                 complementedDNAArray.append(Character("C"))
+            case Character("N"):
+                complementedDNAArray.append(Character("N"))
             default:
-                return nil
+                assertionFailure("Found unknown character in DNA string in \n\(self.stringToWrite)")
             }
         }
         
         let newDNAString        = String(complementedDNAArray.reverse())
         
         let newQualityString    = String(Array(qualityString).reverse())
-        return FASTQ(fastqInfoString: fastqInfoString, dnaString: newDNAString, qualityString: newQualityString, fastqType: fastqType)
+        return FASTQ(fastqInfoString: fastqInfoString, dnaString: newDNAString, qualityString: newQualityString, fastqType: fastqType)!
     }
 }

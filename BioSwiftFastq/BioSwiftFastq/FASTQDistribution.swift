@@ -164,29 +164,29 @@ public class FASTQDistribution {
     public func getProbabilityCalculatorForFASTQType(fastqType: FASTQType) -> ProbNucleotide -> Double {
         var probDictionary = [ProbNucleotide:Double]()
         
-        let totalCount = Double(aCount + tCount + gCount + cCount + nCount)
+        let totalCount = Double(self.totalCount)
         
         for (character, count) in aDistribution {
             if let errorProb = fastqType.charToProb(character) {
-                probDictionary[.Known(.A ,errorProb)] = Double(count)/totalCount
+                probDictionary[.Known(.A, errorProb)] = Double(count)/totalCount
             }
         }
         
-        for (character, count) in aDistribution {
+        for (character, count) in tDistribution {
             if let errorProb = fastqType.charToProb(character) {
-                probDictionary[.Known(.A ,errorProb)] = Double(count)/totalCount
+                probDictionary[.Known(.T, errorProb)] = Double(count)/totalCount
             }
         }
         
-        for (character, count) in aDistribution {
+        for (character, count) in gDistribution {
             if let errorProb = fastqType.charToProb(character) {
-                probDictionary[.Known(.A ,errorProb)] = Double(count)/totalCount
+                probDictionary[.Known(.G, errorProb)] = Double(count)/totalCount
             }
         }
         
-        for (character, count) in aDistribution {
+        for (character, count) in cDistribution {
             if let errorProb = fastqType.charToProb(character) {
-                probDictionary[.Known(.A ,errorProb)] = Double(count)/totalCount
+                probDictionary[.Known(.C, errorProb)] = Double(count)/totalCount
             }
         }
         

@@ -193,7 +193,12 @@ public class FASTQDistribution {
         probDictionary[.Unknown] = Double(nCount)/totalCount
         
         return {(probNucleotide: ProbNucleotide) -> Double in
-            return probDictionary[probNucleotide] ?? 0.0
+            if let prob = probDictionary[probNucleotide] {
+                return prob
+            } else {
+                println("Unexpectedly found nil in distribution, maybe the file isn't the right one")
+                return 0.0
+            }
         }
     }
 }

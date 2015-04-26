@@ -14,6 +14,8 @@ public enum Nucleotide: Character, NucleotideType {
     case G = "G"
     case T = "T"
     
+    public static let allValues = [A, T, G, C]
+    
     public func probOfMatchWithNucleotide(nucleotide: Nucleotide) -> Double {
         return nucleotide == self ? 1.0 : 0.0
     }

@@ -10,7 +10,7 @@ import Foundation
 
 public enum ProbNucleotide: NucleotideType, Hashable {
     case Unknown
-    case Known(Nucleotide, Double)
+    case Known(Nucleotide, errorProb: Double)
     
     public func probOfMatchWithNucleotide(nucleotide: Nucleotide) -> Double {
         switch self {
@@ -30,7 +30,7 @@ public enum ProbNucleotide: NucleotideType, Hashable {
         case .Unknown:
             return .Unknown
         case let .Known(nuc, errorProb):
-            return .Known(nuc.complement, errorProb)
+            return .Known(nuc.complement, errorProb: errorProb)
         }
     }
     

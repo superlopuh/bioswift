@@ -168,25 +168,25 @@ public class FASTQDistribution {
         
         for (character, count) in aDistribution {
             if let errorProb = fastqType.charToProb(character) {
-                probDictionary[.Known(.A, errorProb)] = Double(count)/totalCount
+                probDictionary[.Known(.A, errorProb: errorProb)] = Double(count)/totalCount
             }
         }
         
         for (character, count) in tDistribution {
             if let errorProb = fastqType.charToProb(character) {
-                probDictionary[.Known(.T, errorProb)] = Double(count)/totalCount
+                probDictionary[.Known(.T, errorProb: errorProb)] = Double(count)/totalCount
             }
         }
         
         for (character, count) in gDistribution {
             if let errorProb = fastqType.charToProb(character) {
-                probDictionary[.Known(.G, errorProb)] = Double(count)/totalCount
+                probDictionary[.Known(.G, errorProb: errorProb)] = Double(count)/totalCount
             }
         }
         
         for (character, count) in cDistribution {
             if let errorProb = fastqType.charToProb(character) {
-                probDictionary[.Known(.C, errorProb)] = Double(count)/totalCount
+                probDictionary[.Known(.C, errorProb: errorProb)] = Double(count)/totalCount
             }
         }
         

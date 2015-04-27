@@ -36,7 +36,7 @@ public struct FASTQ {
             var nucleotideArray = [ProbNucleotide]()
             for (index, character) in enumerate(dnaString) {
                 if let nucleotide = Nucleotide(char: character) {
-                    let probNucleotide = ProbNucleotide.Known(nucleotide, errorProbArray[index])
+                    let probNucleotide = ProbNucleotide.Known(nucleotide, errorProb: errorProbArray[index])
                     nucleotideArray.append(probNucleotide)
                 } else if Character("N") == character {
                     // Unknown error probability

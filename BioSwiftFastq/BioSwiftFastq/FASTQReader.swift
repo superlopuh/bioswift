@@ -162,7 +162,7 @@ public class FASTQReader {
             for (dnaChar, qualityChar) in pairArray {
                 let probNucleotide: ProbNucleotide
                 if let nucleotide = Nucleotide(char: dnaChar), let errorProb = fastqType.charToProb(qualityChar) {
-                    probNucleotide = ProbNucleotide.Known(nucleotide, errorProb)
+                    probNucleotide = ProbNucleotide.Known(nucleotide, errorProb: errorProb)
                 } else if Character("N") == dnaChar {
                     // Unknown error probability
                     probNucleotide = .Unknown

@@ -53,6 +53,11 @@ public enum ProbNucleotide: NucleotideType, Hashable {
     }
 }
 
+public func probOfGeneration(probNucleotide: ProbNucleotide, withGenProb genProb: Double, byNucleotide nuc: Nucleotide, withProb nucProb: Double) -> Double {
+    // Bayesian P(MatchNuc=m|Nuc=n) = P(Nuc=n|MatchNuc=m) * P(MatchNuc = m) / P(Nuc=n)
+    return probNucleotide.probOfMatchWithNucleotide(nuc) * genProb / nucProb
+}
+
 public func ==(lhs:ProbNucleotide, rhs: ProbNucleotide) -> Bool {
     switch (lhs, rhs) {
     case (.Unknown, .Unknown):

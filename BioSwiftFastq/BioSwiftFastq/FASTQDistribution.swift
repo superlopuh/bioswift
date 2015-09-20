@@ -31,28 +31,27 @@ public class FASTQDistribution {
     }
     
     public init?(fileAddress: NSURL) {
-        if let filePath = fileAddress.path where NSFileManager.defaultManager().fileExistsAtPath(filePath),
-            let myDict = NSDictionary(contentsOfURL: fileAddress),
-            let aDist = myDict[aDistKey] as? [String:Int],
-            let tDist = myDict[tDistKey] as? [String:Int],
-            let gDist = myDict[gDistKey] as? [String:Int],
-            let cDist = myDict[cDistKey] as? [String:Int],
-            let nDist = myDict[nDistKey] as? [String:Int] {
-                self.aDistribution = aDist.map() {
-                    return (Character($0), $1)
-                }
-                self.tDistribution = tDist.map() {
-                    return (Character($0), $1)
-                }
-                self.gDistribution = gDist.map() {
-                    return (Character($0), $1)
-                }
-                self.cDistribution = cDist.map() {
-                    return (Character($0), $1)
-                }
-                self.nDistribution = nDist.map() {
-                    return (Character($0), $1)
-                }
+        guard let filePath = fileAddress.path where NSFileManager.defaultManager().fileExistsAtPath(filePath),
+            let myDict = NSDictionary(contentsOfURL: fileAddress) else {
+                self.aDistribution = [:]
+                self.tDistribution = [:]
+                self.gDistribution = [:]
+                self.cDistribution = [:]
+                self.nDistribution = [:]
+                return nil
+        }
+        if let aDist = myDict[aDistKey] as? [String:Int],
+        let tDist = myDict[tDistKey] as? [String:Int],
+        let gDist = myDict[gDistKey] as? [String:Int],
+        let cDist = myDict[cDistKey] as? [String:Int],
+        let nDist = myDict[nDistKey] as? [String:Int] {
+            
+            self.aDistribution = aDist.map({(Character($0), $1)})
+            self.tDistribution = tDist.map({(Character($0), $1)})
+            self.gDistribution = gDist.map({(Character($0), $1)})
+            self.cDistribution = cDist.map({(Character($0), $1)})
+            self.nDistribution = nDist.map({(Character($0), $1)})
+            
         } else {
             self.aDistribution = [:]
             self.tDistribution = [:]
@@ -63,26 +62,16 @@ public class FASTQDistribution {
         }
     }
     
-    public func writeToPlist(atAddress fileAddress: NSURL) {
+    public func writeToPlist(atAddress fileAddress: NSURL) throws {
         if let filePath = fileAddress.path {
-            var dict: NSMutableDictionary = [:]
+            let dict: NSMutableDictionary = [:]
             
             // Character is not a serialisable type, have to map to String
-            let myADist = aDistribution.map {
-                return (String($0), $1)
-            }
-            let myTDist = tDistribution.map {
-                return (String($0), $1)
-            }
-            let myGDist = gDistribution.map {
-                return (String($0), $1)
-            }
-            let myCDist = cDistribution.map {
-                return (String($0), $1)
-            }
-            let myNDist = nDistribution.map {
-                return (String($0), $1)
-            }
+            let myADist = aDistribution.map() {(String($0), $1)}
+            let myTDist = tDistribution.map() {(String($0), $1)}
+            let myGDist = gDistribution.map() {(String($0), $1)}
+            let myCDist = cDistribution.map() {(String($0), $1)}
+            let myNDist = nDistribution.map() {(String($0), $1)}
             
             // Set values to the dictionary being written
             dict.setObject(myADist, forKey: aDistKey)
@@ -99,9 +88,7 @@ public class FASTQDistribution {
                 NSFileManager.defaultManager().fileExistsAtPath(folderPath, isDirectory: &isDirectory)
                 
                 if !isDirectory {
-                    var error: NSError?
-                    
-                    NSFileManager.defaultManager().createDirectoryAtPath(folderPath, withIntermediateDirectories: false, attributes: nil, error: &error)
+                    try NSFileManager.defaultManager().createDirectoryAtPath(folderPath, withIntermediateDirectories: false, attributes: nil)
                 }
             }
             
@@ -109,7 +96,7 @@ public class FASTQDistribution {
             
             // Test that everything was written correctly
             let resultDict = NSMutableDictionary(contentsOfFile: filePath)
-            println("Saved distribution:\n\(resultDict)")
+            print("Saved distribution:\n\(resultDict)")
         }
     }
     
@@ -196,21 +183,19 @@ public class FASTQDistribution {
             if let prob = probDictionary[probNucleotide] {
                 return prob
             } else {
-                println("Unexpectedly found nil in distribution, maybe the file isn't the right one")
+                print("Unexpectedly found nil in distribution, maybe the file isn't the right one")
                 return 0.0
             }
         }
     }
 }
 
-extension FASTQDistribution: Printable {
+extension FASTQDistribution: CustomStringConvertible {
     public var description: String {
         var description = "FASTQ distribution:\n"
         
         func charDictDescription(charDict: [Character:Int]) -> String {
-            let charPairArray = Array(charDict)
-            
-            let sortedPairArray = charPairArray.sorted() {(lhsPair: (char: Character, Int), rhsPair: (char: Character, Int)) -> Bool in
+            let sortedPairArray = Array(charDict).sort() {(lhsPair: (char: Character, Int), rhsPair: (char: Character, Int)) -> Bool in
                 return lhsPair.char.scalarValue < rhsPair.char.scalarValue
             }
             

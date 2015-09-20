@@ -55,8 +55,7 @@ public enum FASTQType {
         case .Illumina18:
             return qualityScore
         case .Illumina15:
-            println("Illumina 1.5 FASTQ not yet implemented")
-            return nil
+            return qualityScore
         }
     }
     

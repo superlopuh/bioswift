@@ -28,13 +28,13 @@ public struct FASTQ {
         self.qualityString      = qualityString
         
         // Convert qualityString to probability array
-        let optionalErrorProbArray = Array(qualityString).map() {
+        let optionalErrorProbArray = Array(qualityString.characters).map() {
             return fastqType.charToProb($0)
         }
         
         if let errorProbArray = unwrap(optionalErrorProbArray) {
             var nucleotideArray = [ProbNucleotide]()
-            for (index, character) in enumerate(dnaString) {
+            for (index, character) in dnaString.characters.enumerate() {
                 if let nucleotide = Nucleotide(char: character) {
                     let probNucleotide = ProbNucleotide.Known(nucleotide, errorProb: errorProbArray[index])
                     nucleotideArray.append(probNucleotide)
@@ -42,7 +42,7 @@ public struct FASTQ {
                     // Unknown error probability
                     nucleotideArray.append(.Unknown)
                 } else {
-                    println("Could not initialise ProbNucleotide from \(character)")
+                    print("Could not initialise ProbNucleotide from \(character)")
                     return nil
                 }
             }
@@ -50,7 +50,7 @@ public struct FASTQ {
             self.probDNASequence = DNASeq<ProbNucleotide>(nucleotideArray)
             
         } else {
-            println("QualityString did not unwrap successfully")
+            print("QualityString did not unwrap successfully")
             return nil
         }
     }
@@ -67,7 +67,7 @@ public struct FASTQ {
     public func reverseAndComplement() -> FASTQ {
         var complementedDNAArray = [Character]()
         
-        for character in Array(dnaString) {
+        for character in dnaString.characters {
             switch character {
             case Character("A"):
                 complementedDNAArray.append(Character("T"))
@@ -86,7 +86,7 @@ public struct FASTQ {
         
         let newDNAString        = String(complementedDNAArray.reverse())
         
-        let newQualityString    = String(Array(qualityString).reverse())
+        let newQualityString    = String(qualityString.characters.reverse())
         return FASTQ(fastqInfoString: fastqInfoString, dnaString: newDNAString, qualityString: newQualityString, fastqType: fastqType)!
     }
 }

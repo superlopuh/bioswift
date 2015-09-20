@@ -18,15 +18,15 @@ struct FASTQStringsSequence: SequenceType {
         self.count              = stringsSequence.count/4
     }
     
-    func generate() -> GeneratorOf<FASTQStrings> {
+    func generate() -> AnyGenerator<FASTQStrings> {
         var gen = stringsSequence.generate()
         
-        return GeneratorOf<FASTQStrings> {
+        return anyGenerator() { () -> FASTQStrings? in
             if
-                let infoString    = gen.next(),
-                let dnaString     = gen.next(),
-                let plusString    = gen.next(),
-                let qualityString = gen.next(){
+                let infoString      = gen.next(),
+                let dnaString       = gen.next(),
+                let _               = gen.next(),
+                let qualityString   = gen.next() {
                     return FASTQStrings(fastqInfoString: infoString, dnaString: dnaString, qualityString: qualityString)
             } else {
                 return nil

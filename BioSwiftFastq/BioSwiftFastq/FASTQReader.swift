@@ -12,14 +12,11 @@ import BioSwiftCore
 public class FASTQReader {
     // Get as many FASTQ sequences from start of file as possible
     // Does not check for file being valid
-    private static func getFASTQStringsSequenceFromFile(fileAddress: NSURL) -> FASTQStringsSequence {
-        if let fileContent = NSString(contentsOfURL: fileAddress, encoding: NSUTF8StringEncoding, error: nil) {
-            println("FASTQ file length \(fileContent.length)")
-            let fastqStringArray = fileContent.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) as! [String]
-            return FASTQStringsSequence(stringsSequence: fastqStringArray)
-        } else {
-            return FASTQStringsSequence(stringsSequence: [String]())
-        }
+    private static func getFASTQStringsSequenceFromFile(fileAddress: NSURL) throws -> FASTQStringsSequence {
+        let fileContent = try NSString(contentsOfURL: fileAddress, encoding: NSUTF8StringEncoding)
+        print("FASTQ file length \(fileContent.length)")
+        let fastqStringArray = fileContent.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) 
+        return FASTQStringsSequence(stringsSequence: fastqStringArray)
     }
     
     // Get as many FASTQ sequences from start of file as possible
@@ -27,20 +24,21 @@ public class FASTQReader {
     public static func getArrayFromFile(fileAddress: NSURL, ofFASTQType fastqType: FASTQType) -> [FASTQ] {
         
         var sequences = [FASTQ]()
-        
-        if let fileContent = NSString(contentsOfURL: fileAddress, encoding: NSUTF8StringEncoding, error: nil) {
-            println("FASTQ file length \(fileContent.length)")
-            let fastqStringArray = fileContent.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) as! [String]
+        do {
+            let fileContent = try NSString(contentsOfURL: fileAddress, encoding: NSUTF8StringEncoding)
+            
+            print("FASTQ file length \(fileContent.length)")
+            let fastqStringArray = fileContent.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             
             let dateStart = NSDate()
             
-            println("Date start: \(dateStart)")
+            print("Date start: \(dateStart)")
             
             var gen = fastqStringArray.generate()
             while
                 let infoString    = gen.next(),
                 let dnaString     = gen.next(),
-                let plusString    = gen.next(),
+                let _             = gen.next(), // plusString
                 let qualityString = gen.next(){
                     if let fastq = FASTQ(fastqInfoString: infoString, dnaString: dnaString, qualityString: qualityString, fastqType: fastqType) {
                         sequences.append(fastq)
@@ -48,17 +46,20 @@ public class FASTQReader {
                         break
                     }
             }
+        } catch {
+            print("Error while opening fastq file")
         }
+        
         // End of file
         
-        println("Date end: \(NSDate())")
+        print("Date end: \(NSDate())")
         
         return sequences
     }
     
-    public static func getArrayFromFile(fileAddress: NSURL, ofFASTQType fastqType: FASTQType, @noescape usingFilter filter: FASTQ -> Bool) -> [FASTQ] {
+    public static func getArrayFromFile(fileAddress: NSURL, ofFASTQType fastqType: FASTQType, @noescape usingFilter filter: FASTQ -> Bool) throws -> [FASTQ] {
         
-        let fastqStringsSequence = FASTQReader.getFASTQStringsSequenceFromFile(fileAddress)
+        let fastqStringsSequence = try FASTQReader.getFASTQStringsSequenceFromFile(fileAddress)
         
         let numberOfFASTQs = fastqStringsSequence.count
         var fastqRead = 0
@@ -68,23 +69,23 @@ public class FASTQReader {
         
         let dateStart = NSDate()
         
-        println("Date start: \(dateStart)")
+        print("Date start: \(dateStart)")
         
         for fastqStrings in fastqStringsSequence {
             fastqRead++
             if fastqRead > 100000 && !printed {
-                println("100000 fastq parsed")
-                println(NSDate())
+                print("100000 fastq parsed")
+                print(NSDate())
                 
                 let secondsElapsed = NSDate().timeIntervalSinceDate(dateStart)
                 
-                println("Seconds since start: \(secondsElapsed)")
+                print("Seconds since start: \(secondsElapsed)")
                 
                 let secondsLeft = secondsElapsed * Double(numberOfFASTQs - 100000)/100000.0
                 
-                println("Seconds left: \(secondsLeft)")
+                print("Seconds left: \(secondsLeft)")
                 
-                println("Finish estimate: \(NSDate().dateByAddingTimeInterval(secondsLeft))")
+                print("Finish estimate: \(NSDate().dateByAddingTimeInterval(secondsLeft))")
                 
                 printed = true
             }
@@ -98,25 +99,25 @@ public class FASTQReader {
         }
         // End of file
         
-        println("Date end: \(NSDate())")
+        print("Date end: \(NSDate())")
         
         return sequences
     }
     
-    public static func getFASTQDistributionFromFile(fileAddress: NSURL) -> FASTQDistribution {
+    public static func getFASTQDistributionFromFile(fileAddress: NSURL) throws -> FASTQDistribution {
         var aDistribution: [Character:Int] = [:]
         var tDistribution: [Character:Int] = [:]
         var gDistribution: [Character:Int] = [:]
         var cDistribution: [Character:Int] = [:]
         var nDistribution: [Character:Int] = [:]
         
-        let fastqStringsSequence = FASTQReader.getFASTQStringsSequenceFromFile(fileAddress)
+        let fastqStringsSequence = try FASTQReader.getFASTQStringsSequenceFromFile(fileAddress)
         
         for fastqStrings in fastqStringsSequence {
-            let dnaArray        = Array(fastqStrings.dnaString)
-            let qualityArray    = Array(fastqStrings.qualityString)
+            let dnaArray        = Array(fastqStrings.dnaString.characters)
+            let qualityArray    = Array(fastqStrings.qualityString.characters)
             
-            assert(count(dnaArray) == count(qualityArray), "dnaArray different length to qualityArray: malformed FASTQ file")
+            assert(dnaArray.count == qualityArray.count, "dnaArray different length to qualityArray: malformed FASTQ file")
             
             let pairArray       = zip(dnaArray, qualityArray)
             for (dnaChar, qualityChar) in pairArray {
@@ -142,20 +143,20 @@ public class FASTQReader {
     }
     
     // Returns a dictionary of probNucleotide to count
-    public static func getProbNucleotideDistribution(fileAddress: NSURL, ofFASTQType fastqType: FASTQType) -> [ProbNucleotide:Int] {
+    public static func getProbNucleotideDistribution(fileAddress: NSURL, ofFASTQType fastqType: FASTQType) throws -> [ProbNucleotide:Int] {
         var distribution: [ProbNucleotide:Int] = [:]
         
-        let fastqStringsSequence = FASTQReader.getFASTQStringsSequenceFromFile(fileAddress)
+        let fastqStringsSequence = try FASTQReader.getFASTQStringsSequenceFromFile(fileAddress)
         
-        let lazySequence = lazy(fastqStringsSequence)
+        let lazySequence = fastqStringsSequence.lazy
         
         let lazyDistributionSequence = lazySequence.map() { (fastqStrings: FASTQStrings) -> [ProbNucleotide:Int] in
             var distribution: [ProbNucleotide:Int] = [:]
             
-            let dnaArray        = Array(fastqStrings.dnaString)
-            let qualityArray    = Array(fastqStrings.qualityString)
+            let dnaArray        = Array(fastqStrings.dnaString.characters)
+            let qualityArray    = Array(fastqStrings.qualityString.characters)
             
-            assert(count(dnaArray) == count(qualityArray), "dnaArray different length to qualityArray: malformed FASTQ file")
+            assert(dnaArray.count == qualityArray.count, "dnaArray different length to qualityArray: malformed FASTQ file")
             
             let pairArray       = zip(dnaArray, qualityArray)
             

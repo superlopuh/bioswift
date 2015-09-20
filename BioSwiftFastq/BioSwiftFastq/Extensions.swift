@@ -34,10 +34,10 @@ extension Dictionary {
     }
     
     func map<OutKey: Hashable, OutValue>(transform: Element -> (OutKey, OutValue)) -> [OutKey: OutValue] {
-        return Dictionary<OutKey, OutValue>(Swift.map(self, transform))
+        return Dictionary<OutKey, OutValue>(self.map(transform))
     }
     
     func filter(includeElement: Element -> Bool) -> [Key: Value] {
-        return Dictionary(Swift.filter(self, includeElement))
+        return Dictionary(self.filter(includeElement))
     }
 }

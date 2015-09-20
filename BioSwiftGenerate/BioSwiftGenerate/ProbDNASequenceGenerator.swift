@@ -14,7 +14,7 @@ public class ProbDNASequenceGenerator {
     public static func generateSequence(ofLength length: Int, @noescape probNucGenerator: () -> ProbNucleotide) -> DNASeq<ProbNucleotide> {
         var probNucleotideArray = [ProbNucleotide]()
         
-        for i in 0..<length {
+        for _ in 0..<length {
             probNucleotideArray.append(probNucGenerator())
         }
         

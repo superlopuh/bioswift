@@ -13,7 +13,7 @@ public class DNASequenceGenerator {
     public static func generateSequence(ofLength length: Int) -> DNASeq<Nucleotide> {
         var nucleotideArray = [Nucleotide]()
         
-        for i in 0..<length {
+        for _ in 0..<length {
             let randomNumber = arc4random_uniform(4)
             
             let nucleotide: Nucleotide

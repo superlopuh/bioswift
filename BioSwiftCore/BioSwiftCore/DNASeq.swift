@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct DNASeq<N: NucleotideType>: Printable {
+public struct DNASeq<N: NucleotideType>: CustomStringConvertible {
     public typealias Nuc = N
     
     public var nucleotideArray: [N]

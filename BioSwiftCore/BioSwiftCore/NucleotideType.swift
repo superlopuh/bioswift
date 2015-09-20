@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol NucleotideType: Printable {
+public protocol NucleotideType: CustomStringConvertible {
     func probOfMatchWithNucleotide(nucleotide: Nucleotide) -> Double
     var complement: Self {get}
 }

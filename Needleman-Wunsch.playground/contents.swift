@@ -18,9 +18,10 @@ func whichMax<C where C: Comparable> (toCompare: C...) -> Int {
     var maxIndex    = 0
     var previousMax = toCompare[0]
     
-    for (index, comparee) in enumerate(toCompare) {
+    for (index, comparee) in toCompare.enumerate() {
         if (comparee > previousMax) {
-            maxIndex = index
+            maxIndex    = index
+            previousMax = comparee
         }
     }
     
@@ -62,9 +63,9 @@ let misMatch    = -1
 let stringA     = "ACGCTG"
 let stringB     = "CATGT"
 
-func globalAlignment(top: String, left: String) -> String {
-    let leftArray = Array(left)
-    let topArray = Array(top)
+func globalAlignment(top: String, _ left: String) -> String {
+    let leftArray = Array(left.characters)
+    let topArray = Array(top.characters)
     var scoreAndPointerMatrix: Matrix<(Int, Pointer?)> = Matrix<(Int, Pointer?)>(rows: leftArray.count + 1, columns: topArray.count + 1, repeatedValue: (0, nil))
     
     // Initialise top row to decreasing scores 0, -1, -2, ...
@@ -136,5 +137,3 @@ func globalAlignment(top: String, left: String) -> String {
 
 
 globalAlignment(stringA, stringB)
-
-

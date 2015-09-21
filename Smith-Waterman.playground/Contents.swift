@@ -1,3 +1,16 @@
+//:
+//: # Smith-Waterman (Local alignment)
+//:
+//: Time complexity: O(nm)
+//:
+//: Space Complexity: O(nm)
+//:
+//: ----
+//:
+//: This algorithm is used to assess the similarity of two strings. It tries to align the best-fitting substrings.
+//:
+//: It works by filling the edit graph from the top left to the bottom right, finding the cell with the best alignment score, and tracing the path from this score to the cell with a score of 0. Each cell stores the score of the best local alignment that matches the compound to the left to the compound above, as well as a pointer to the cell of a best alignment of the prefix.
+
 import Foundation
 
 // Helper function, chooses max out of a variable number of parameters
@@ -5,7 +18,7 @@ func whichMax<C where C: Comparable> (toCompare: C...) -> Int {
     var maxIndex    = 0
     var previousMax = toCompare[0]
     
-    for (index, comparee) in enumerate(toCompare) {
+    for (index, comparee) in toCompare.enumerate() {
         if (comparee > previousMax) {
             maxIndex = index
             previousMax = comparee
@@ -83,9 +96,9 @@ let misMatch    = -2
 let stringA     = "AAACT"
 let stringB     = "CTAAA"
 
-func bestLocalAlignment(top: String, left: String) -> String {
-    let leftArray = Array(left)
-    let topArray = Array(top)
+func bestLocalAlignment(top: String, _ left: String) -> String {
+    let leftArray = Array(left.characters)
+    let topArray = Array(top.characters)
     var scoreAndPointerMatrix: Matrix<EditGraphCell> = Matrix<EditGraphCell>(rows: leftArray.count + 1, columns: topArray.count + 1, repeatedValue: EditGraphCell(score: 0, pointer: nil))
     
     
@@ -143,7 +156,7 @@ func bestLocalAlignment(top: String, left: String) -> String {
         endCoords    = (endCoords.row - 1, endCoords.col - 1)
         
     }
-
+    
     
     while scoreAndPointerMatrix[currentCoords.row, currentCoords.col].pointer != nil {
         returnedTop + "\n" + returnedLeft
@@ -196,6 +209,4 @@ func bestLocalAlignment(top: String, left: String) -> String {
 
 
 bestLocalAlignment(stringA, stringB)
-
-
 

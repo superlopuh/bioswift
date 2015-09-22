@@ -45,12 +45,6 @@ public struct DNASeq<N: NucleotideType>: CustomStringConvertible {
     }
     
     public var description: String {
-        var description = ""
-        
-        for nucleotide in nucleotideArray {
-            description += nucleotide.description
-        }
-        
-        return description
+        return nucleotideArray.map({$0.description}).joinWithSeparator("")
     }
 }

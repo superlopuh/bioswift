@@ -60,33 +60,31 @@ let gapPenalty  = -1
 let match       =  2
 let misMatch    = -1
 
-let stringA     = "ACGCTG"
-let stringB     = "CATGT"
+let seqA     = Array("ACGCTG".characters)
+let seqB     = Array("CATGT".characters)
 
-func globalAlignment(top: String, _ left: String) -> String {
-    let leftArray = Array(left.characters)
-    let topArray = Array(top.characters)
-    var scoreAndPointerMatrix: Matrix<(Int, Pointer?)> = Matrix<(Int, Pointer?)>(rows: leftArray.count + 1, columns: topArray.count + 1, repeatedValue: (0, nil))
+func globalAlignment<N: Equatable, NN: CollectionType where NN.Generator.Element == N, NN.Index == Int>(top: NN, _ left: NN) -> String {
+    var scoreAndPointerMatrix: Matrix<(Int, Pointer?)> = Matrix<(Int, Pointer?)>(rows: left.count + 1, columns: top.count + 1, repeatedValue: (0, nil))
     
     // Initialise top row to decreasing scores 0, -1, -2, ...
-    for index in 1...topArray.count {
+    for index in 1...top.count {
         scoreAndPointerMatrix[0, index] = (-index, Pointer.Left)
     }
     
     // Initialise first column to decreasing scores 0, -1, -2, ...
-    for index in 1...leftArray.count {
+    for index in 1...left.count {
         scoreAndPointerMatrix[index, 0] = (-index, Pointer.Up)
     }
     
     scoreAndPointerMatrix
     
     // Main iteration
-    for col in 1...topArray.count {
-        for row in 1...leftArray.count {
+    for col in 1...top.count {
+        for row in 1...left.count {
             let skipTopScore    = scoreAndPointerMatrix[row, col-1].0 + gapPenalty
             let skipLeftScore   = scoreAndPointerMatrix[row-1, col].0 + gapPenalty
-            let matchScore      = scoreAndPointerMatrix[row-1, col-1].0 + (leftArray[row-1] == topArray[col-1] ? match : misMatch)
-            switch whichMax(skipTopScore, skipLeftScore, matchScore) {
+            let matchScore      = scoreAndPointerMatrix[row-1, col-1].0 + (left[row-1] == top[col-1] ? match : misMatch)
+            switch whichMax(skipTopScore, skipLeftScore, matchScore)! {
             case 0:
                 scoreAndPointerMatrix[row, col] = (skipTopScore, Pointer.Left)
             case 1:
@@ -105,7 +103,7 @@ func globalAlignment(top: String, _ left: String) -> String {
     var returnedTop: String = ""
     var returnedLeft:String = ""
     
-    var currentCoords = (row: leftArray.count, col: topArray.count)
+    var currentCoords = (row: left.count, col: top.count)
     
     
     while scoreAndPointerMatrix[currentCoords.row, currentCoords.col].1 != nil {
@@ -115,16 +113,16 @@ func globalAlignment(top: String, _ left: String) -> String {
             currentPointer
             switch currentPointer {
             case .Up:
-                returnedLeft = String(leftArray[currentCoords.row - 1])   + "\t" + returnedLeft
+                returnedLeft = String(left[currentCoords.row - 1])   + "\t" + returnedLeft
                 returnedTop  = "-"                                      + "\t" + returnedTop
                 currentCoords = (currentCoords.row - 1, currentCoords.col)
             case .Left:
                 returnedLeft = "-"                                      + "\t" + returnedLeft
-                returnedTop  = String(topArray[currentCoords.col - 1])    + "\t" + returnedTop
+                returnedTop  = String(top[currentCoords.col - 1])    + "\t" + returnedTop
                 currentCoords = (currentCoords.row, currentCoords.col - 1)
             case .Diag:
-                returnedLeft = String(leftArray[currentCoords.row - 1])   + "\t" + returnedLeft
-                returnedTop  = String(topArray[currentCoords.col - 1])    + "\t" + returnedTop
+                returnedLeft = String(left[currentCoords.row - 1])   + "\t" + returnedLeft
+                returnedTop  = String(top[currentCoords.col - 1])    + "\t" + returnedTop
                 currentCoords = (currentCoords.row - 1, currentCoords.col - 1)
             }
         } else {
@@ -136,4 +134,4 @@ func globalAlignment(top: String, _ left: String) -> String {
 }
 
 
-globalAlignment(stringA, stringB)
+globalAlignment(seqA, seqB)

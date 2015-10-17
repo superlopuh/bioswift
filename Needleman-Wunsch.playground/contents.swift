@@ -12,20 +12,12 @@
 import Foundation
 
 // Helper function, chooses max out of a variable number of parameters
-func whichMax<C where C: Comparable> (toCompare: C...) -> Int {
-    assert(toCompare.count != 0, "Compare more than one element for whichMax")
+func whichMax<C where C: Comparable> (toCompare: C...) -> Int? {
+    guard !toCompare.isEmpty else {return nil}
     
-    var maxIndex    = 0
-    var previousMax = toCompare[0]
-    
-    for (index, comparee) in toCompare.enumerate() {
-        if (comparee > previousMax) {
-            maxIndex    = index
-            previousMax = comparee
-        }
-    }
-    
-    return maxIndex
+    return toCompare.enumerate().maxElement({
+        $0.1 < $1.1
+    })!.0
 }
 
 struct Matrix<T> {
